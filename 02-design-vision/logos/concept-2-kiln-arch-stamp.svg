@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560" role="img" aria-labelledby="title-c2 desc-c2">
+  <title id="title-c2">250° Kitchen — Concept 2: The Kiln-Arch Stamp Brand Specimen</title>
+  <desc id="desc-c2">Architectural woodfire oven arch enclosing knocked-out geometric 250 numerals seated on the hearth floor under a glowing ember degree apex, with bilateral English and Arabic signage lockup, packaging stamp, and optical favicons.</desc>
+  <defs>
+    <style>
+      .label { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; fill: #6B6259; }
+      .bilat-en { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.2em; }
+      .bilat-ar { font-family: 'Alexandria', 'IBM Plex Sans Arabic', 'Geeza Pro', 'Tahoma', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0; }
+    </style>
+
+    <!-- Condensed Geometric 250 Numerals Seated Inside the Arch (box ~104x46) -->
+    <g id="arch-250">
+      <!-- 2 -->
+      <path d="M 6 15 V 11 A 6 6 0 0 1 12 5 H 24 A 6 6 0 0 1 30 11 V 18 A 6 6 0 0 1 24 24 H 12 A 6 6 0 0 0 6 30 V 42 H 32"
+            fill="none" stroke-width="8.5" stroke-linecap="butt" stroke-linejoin="round"/>
+      <!-- 5 -->
+      <path d="M 66 5 H 41 V 18 A 6 6 0 0 0 47 24 H 59 A 6 6 0 0 1 65 30 V 36 A 6 6 0 0 1 59 42 H 47 A 6 6 0 0 1 41 36 V 32"
+            fill="none" stroke-width="8.5" stroke-linecap="butt" stroke-linejoin="round"/>
+      <!-- 0 -->
+      <rect x="75" y="5" width="24" height="37" rx="10" ry="10"
+            fill="none" stroke-width="8.5"/>
+    </g>
+
+    <!-- Solid Architectural Woodfire Kiln Arch Mark (140x152) -->
+    <g id="kiln-arch-solid">
+      <!-- Semicircular Crown + Flat Hearth Base -->
+      <path d="M 8 144 V 70 A 62 62 0 0 1 132 70 V 144 Z" />
+    </g>
+    <!-- Outline Architectural Stamp Version -->
+    <g id="kiln-arch-outline">
+      <path d="M 11 141 V 70 A 59 59 0 0 1 129 70 V 141 Z" fill="none" stroke-width="6"/>
+    </g>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="960" height="560" rx="28" fill="#F4F0E8"/>
+
+  <!-- Header Strip -->
+  <text x="40" y="42" class="label">CONCEPT 02 · THE KILN-ARCH STAMP · WOODFIRE OVEN SILHOUETTE + RISING EMBER APEX</text>
+  <line x1="40" y1="56" x2="920" y2="56" stroke="#E4DDD2" stroke-width="1"/>
+
+  <!-- TILE A: Primary Bilateral Bilingual Lockup -->
+  <rect x="40" y="76" width="560" height="256" rx="24" fill="#FFFFFF"/>
+  <text x="64" y="106" class="label">TIER A · BILATERAL BILINGUAL LOCKUP (STOREFRONT, HERO &amp; SIGNAGE)</text>
+
+  <g id="primary-lockup">
+    <!-- Left English Flanking Label -->
+    <text x="228" y="216" text-anchor="end" fill="#1D1916" class="bilat-en">HEARTH</text>
+    <text x="228" y="236" text-anchor="end" fill="#6B6259" class="bilat-en" font-size="11">KITCHEN</text>
+    <line x1="158" y1="222" x2="228" y2="222" stroke="#E4DDD2" stroke-width="1"/>
+
+    <!-- Center Iconic Solid Kiln-Arch Emblem -->
+    <g transform="translate(250, 134)">
+      <use href="#kiln-arch-solid" fill="#1D1916"/>
+      <!-- Rising Ember Apex Degree Sun -->
+      <circle cx="70" cy="48" r="14" fill="#CC4524"/>
+      <circle cx="70" cy="48" r="5" fill="#1D1916"/>
+      <!-- Knocked-Out 250 Seated Firmly on the Hearth Floor -->
+      <g transform="translate(17.5, 84)">
+        <use href="#arch-250" stroke="#F4F0E8"/>
+      </g>
+    </g>
+
+    <!-- Right Arabic Flanking Label -->
+    <text x="412" y="216" text-anchor="start" fill="#1D1916" class="bilat-ar">مطبخ</text>
+    <text x="412" y="238" text-anchor="start" fill="#6B6259" class="bilat-ar" font-size="14">النار</text>
+    <line x1="412" y1="222" x2="482" y2="222" stroke="#E4DDD2" stroke-width="1"/>
+  </g>
+
+  <!-- TILE B: Dark Contrast Plane (/kds & Cart Dock) -->
+  <rect x="620" y="76" width="300" height="256" rx="24" fill="#171412"/>
+  <text x="644" y="106" class="label" fill="#9E9489">DARK PLANE · /KDS &amp; CART DOCK</text>
+  <g id="dark-lockup" transform="translate(700, 128)">
+    <use href="#kiln-arch-solid" fill="#F4F0E8"/>
+    <circle cx="70" cy="48" r="14" fill="#EB4A1E"/>
+    <circle cx="70" cy="48" r="5" fill="#F4F0E8"/>
+    <g transform="translate(17.5, 84)">
+      <use href="#arch-250" stroke="#171412"/>
+    </g>
+  </g>
+  <text x="770" y="308" text-anchor="middle" fill="#A99F95" class="bilat-en" font-size="11">250° PASS</text>
+
+  <!-- TILE C: Kraft / Linen Packaging Outline Stamp -->
+  <rect x="40" y="352" width="340" height="172" rx="24" fill="#E6DAC8"/>
+  <text x="64" y="380" class="label" fill="#52463A">PACKAGING · KRAFT INK STAMP &amp; WRAP</text>
+  <g id="packaging-stamp" transform="translate(88, 392) scale(0.76)">
+    <use href="#kiln-arch-outline" stroke="#1D1916"/>
+    <circle cx="70" cy="48" r="13" fill="#CC4524"/>
+    <g transform="translate(17.5, 84)">
+      <use href="#arch-250" stroke="#1D1916"/>
+    </g>
+  </g>
+  <!-- Utilitarian Section-B Style Bilingual Order Tick-Box beside stamp -->
+  <g transform="translate(218, 404)">
+    <rect x="0" y="0" width="136" height="96" rx="10" fill="none" stroke="#1D1916" stroke-width="1.5"/>
+    <line x1="0" y1="26" x2="136" y2="26" stroke="#1D1916" stroke-width="1.2"/>
+    <text x="10" y="17" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.1em" fill="#1D1916">250°C · SEALED HOT</text>
+    <rect x="10" y="36" width="10" height="10" rx="2" fill="#CC4524"/>
+    <text x="26" y="45" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#1D1916">SMASH</text>
+    <text x="126" y="45" text-anchor="end" class="bilat-ar" font-size="11" fill="#1D1916">سماش</text>
+    <rect x="10" y="56" width="10" height="10" rx="2" fill="none" stroke="#1D1916" stroke-width="1.2"/>
+    <text x="26" y="65" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#1D1916">PIZZA</text>
+    <text x="126" y="65" text-anchor="end" class="bilat-ar" font-size="11" fill="#1D1916">بيتزا</text>
+    <rect x="10" y="76" width="10" height="10" rx="2" fill="none" stroke="#1D1916" stroke-width="1.2"/>
+    <text x="26" y="85" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#1D1916">GRILL</text>
+    <text x="126" y="85" text-anchor="end" class="bilat-ar" font-size="11" fill="#1D1916">جريل</text>
+  </g>
+
+  <!-- TILE D: Optical Favicons & Mobile Monogram -->
+  <rect x="400" y="352" width="520" height="172" rx="24" fill="#FFFFFF"/>
+  <text x="424" y="380" class="label">TIER B · UNBEATABLE SILHOUETTE AT 64PX, 32PX &amp; 16PX FAVICON</text>
+
+  <!-- 64px Arch Tile -->
+  <g transform="translate(432, 404)">
+    <g transform="scale(0.5)">
+      <use href="#kiln-arch-solid" fill="#1D1916"/>
+      <circle cx="70" cy="48" r="14" fill="#CC4524"/>
+      <g transform="translate(17.5, 84)">
+        <use href="#arch-250" stroke="#F4F0E8"/>
+      </g>
+    </g>
+    <text x="35" y="96" text-anchor="middle" class="label">64PX</text>
+  </g>
+
+  <!-- 32px Arch Tile -->
+  <g transform="translate(556, 422)">
+    <path d="M 3 36 V 18 A 15 15 0 0 1 33 18 V 36 Z" fill="#1D1916"/>
+    <circle cx="18" cy="14" r="4.5" fill="#EB4A1E"/>
+    <rect x="8" y="24" width="20" height="5" rx="2.5" fill="#F4F0E8"/>
+    <text x="18" y="78" text-anchor="middle" class="label">32PX</text>
+  </g>
+
+  <!-- 16px Pure Silhouette Favicon (Arch + Single Ember Dot!) -->
+  <g transform="translate(650, 434)">
+    <path d="M 1 18 V 9 A 8 8 0 0 1 17 9 V 18 Z" fill="#1D1916"/>
+    <circle cx="9" cy="8.5" r="3.2" fill="#EB4A1E"/>
+    <text x="9" y="66" text-anchor="middle" class="label">16PX</text>
+  </g>
+
+  <!-- Design Note -->
+  <text x="720" y="432" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" fill="#1D1916">Why 16px Wins:</text>
+  <text x="720" y="452" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#6B6259">Even with zero digits at 16px,</text>
+  <text x="720" y="469" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#6B6259">the oven arch + ember apex</text>
+  <text x="720" y="486" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#6B6259">stays 100% crisp &amp; iconic.</text>
+</svg>

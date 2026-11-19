@@ -1,0 +1,226 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Scoped dark contrast plane ONLY for Layer 4 (Floating Cart Dock, /kds, Dark Pass Showcase) */
+@custom-variant dark (&:is(.dark *, [data-surface="dark-pass"], [data-surface="dark-pass"] *));
+
+/* ============================================================================
+   @theme inline - Stable Semantic Bridge
+   ============================================================================ */
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: "Plus Jakarta Sans", "IBM Plex Sans Arabic", system-ui, -apple-system, sans-serif;
+
+  /* Core shadcn/ui semantic colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Hospitality & 5-Layer Physical Plane Extensions */
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-ink: var(--primary-ink);
+  --color-surface-tint: var(--surface-tint);
+  --color-glass: var(--glass);
+  --color-pass: var(--pass);
+  --color-pass-surface: var(--pass-surface);
+  --color-pass-foreground: var(--pass-foreground);
+  --color-pass-muted: var(--pass-muted);
+  --color-pass-accent: var(--pass-accent);
+  --color-pass-border: var(--pass-border);
+
+  /* Culinary & KDS Semantic Status Tokens */
+  --color-status-ready: var(--status-ready);
+  --color-status-ready-bg: var(--status-ready-bg);
+  --color-status-prep: var(--status-prep);
+  --color-status-prep-bg: var(--status-prep-bg);
+
+  /* Concentric Soft Geometry (base-luma native scale) */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Soft Ambient Elevation (Floating Layers ONLY) */
+  --shadow-glass: 0 8px 30px -10px oklch(0.22 0.015 55 / 12%), inset 0 1px 0 oklch(1 0 0 / 85%);
+  --shadow-dock: 0 20px 44px -14px oklch(0.16 0.01 45 / 42%), inset 0 1px 0 oklch(1 0 0 / 12%);
+  --shadow-card-hover: 0 14px 32px -16px oklch(0.22 0.015 55 / 14%);
+}
+
+/* ============================================================================
+   DEFAULT THEME (C-05/C-06): Pure Crisp White shadcn base-luma
+   ============================================================================ */
+:root {
+  color-scheme: light;
+  --radius: 0.75rem;
+
+  /* Layer 0 & 1: Pure Crisp White Canvas + Neutral Luma Surfaces */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --surface-tint: oklch(0.985 0 0);
+
+  /* Layer 2: Frosted Pure Daylight Glass */
+  --glass: oklch(1 0 0 / 82%);
+
+  /* Layer 3: Brand Accent (Default: Crisp FlameLink Rose-Crimson) */
+  --primary: oklch(0.585 0.245 12);
+  --primary-foreground: oklch(1 0 0);
+  --primary-hover: oklch(0.525 0.235 12);
+  --primary-ink: oklch(0.525 0.235 12);
+
+  /* Borders, Inputs & Focus Ring */
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.585 0.245 12);
+
+  /* Semantic Status */
+  --destructive: oklch(0.54 0.22 28);
+  --destructive-foreground: oklch(1 0 0);
+  --status-ready: oklch(0.48 0.14 152);
+  --status-ready-bg: oklch(0.955 0.025 152);
+  --status-prep: oklch(0.52 0.14 68);
+  --status-prep-bg: oklch(0.96 0.032 80);
+
+  /* Neutral chart & sidebar defaults */
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.585 0.245 12);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.585 0.245 12);
+
+  /* Layer 4: Neutral Obsidian Contrast Plane */
+  --pass: oklch(0.145 0 0);
+  --pass-surface: oklch(0.205 0 0);
+  --pass-foreground: oklch(0.985 0 0);
+  --pass-muted: oklch(0.708 0 0);
+  --pass-accent: oklch(0.66 0.24 12);
+  --pass-border: oklch(1 0 0 / 10%);
+}
+
+/* ============================================================================
+   1-LINE SWAPPABLE ACCENT OPTION B: Crisp Coral-Orange on Pure White
+   ============================================================================ */
+:root[data-accent="coral"] {
+  --primary: oklch(0.605 0.205 36);
+  --primary-hover: oklch(0.54 0.195 35);
+  --primary-ink: oklch(0.51 0.185 34);
+  --ring: oklch(0.605 0.205 36);
+  --destructive: oklch(0.53 0.21 15);
+  --pass-accent: oklch(0.695 0.205 36);
+}
+
+/* ============================================================================
+   Layer 4 Scoped Dark Pass Surface (Dock, /kds, Dark Showcase Island ONLY)
+   ============================================================================ */
+[data-surface="dark-pass"] {
+  color-scheme: dark;
+  --background: var(--pass);
+  --foreground: var(--pass-foreground);
+  --card: var(--pass-surface);
+  --card-foreground: var(--pass-foreground);
+  --popover: var(--pass-surface);
+  --popover-foreground: var(--pass-foreground);
+  --primary: var(--pass-accent);
+  --primary-foreground: var(--pass);
+  --secondary: oklch(0.28 0.008 50);
+  --secondary-foreground: var(--pass-foreground);
+  --muted: oklch(0.28 0.008 50);
+  --muted-foreground: var(--pass-muted);
+  --accent: oklch(0.30 0.010 50);
+  --accent-foreground: var(--pass-foreground);
+  --border: var(--pass-border);
+  --input: oklch(1 0 0 / 18%);
+  --ring: var(--pass-accent);
+  --destructive: oklch(0.71 0.175 22);
+  --destructive-foreground: var(--pass);
+  --status-ready: oklch(0.80 0.175 152);
+  --status-ready-bg: oklch(0.26 0.055 152);
+  --status-prep: oklch(0.80 0.155 78);
+  --status-prep-bg: oklch(0.28 0.055 72);
+}
+
+/* ============================================================================
+   Base Layer + Base UI Mandatory Portal Stacking Context Isolation
+   ============================================================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  [dir="rtl"] {
+    letter-spacing: 0;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  #root {
+    isolation: isolate;
+  }
+}
+
+@utility tabular-price {
+  font-variant-numeric: tabular-nums;
+}

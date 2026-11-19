@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-palette="a">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>250° Open-Fire Kitchen — Interactive Visual Prototype (v1)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* =====================================================================
+       1-PLACE SEMANTIC OKLCH TOKEN SYSTEM (Swap Palette A / B / C live!)
+       Every component consumes ONLY these variables — zero hardcoded hex!
+    ===================================================================== */
+    :root,
+    [data-palette="a"] {
+      /* Temperament A — Sunlit Kiln & Terracotta (Dreambeans × CoolDock) */
+      --bg-canvas: oklch(0.955 0.011 82);      /* #F4F0E8 Warm Linen */
+      --bg-surface: oklch(1 0 0);              /* #FFFFFF Crisp Paper */
+      --bg-subtle: oklch(0.924 0.013 78);      /* #ECE6DC Soft Oat */
+      --fg-primary: oklch(0.22 0.008 55);      /* #1D1916 Warm Espresso */
+      --fg-muted: oklch(0.47 0.012 62);        /* #645B52 Muted Stone */
+      --border-hairline: oklch(0.88 0.012 78);
+      --accent: oklch(0.555 0.176 36);         /* #CC4524 Kiln Terracotta (WCAG AA 4.73:1) */
+      --accent-hover: oklch(0.49 0.168 35);
+      --accent-soft: oklch(0.555 0.176 36 / 0.11);
+      --accent-fg: oklch(0.99 0.004 80);
+      --dark-plane: oklch(0.19 0.007 50);      /* #171412 Charred Walnut */
+      --dark-card: oklch(0.24 0.008 52);
+      --error: oklch(0.49 0.195 15);           /* #B91C3C Crimson-Rose (>= 20° hue gap!) */
+      --success: oklch(0.54 0.14 152);
+      --palette-label: "A · Sunlit Kiln Terracotta (#CC4524 on #F4F0E8)";
+    }
+
+    [data-palette="b"] {
+      /* Temperament B — Ember Vermilion & Studio Stone (CoolDock × Firecrawl) */
+      --bg-canvas: oklch(0.952 0.006 75);      /* #F2F0EC Studio Stone */
+      --bg-surface: oklch(1 0 0);
+      --bg-subtle: oklch(0.928 0.006 75);
+      --fg-primary: oklch(0.21 0.003 60);      /* #1B1A19 Carbon Slate */
+      --fg-muted: oklch(0.46 0.006 60);
+      --border-hairline: oklch(0.88 0.006 75);
+      --accent: oklch(0.585 0.205 35);         /* #DC4319 Ember Vermilion */
+      --accent-hover: oklch(0.51 0.192 34);
+      --accent-soft: oklch(0.585 0.205 35 / 0.11);
+      --accent-fg: oklch(1 0 0);
+      --dark-plane: oklch(0.18 0.003 55);      /* #141312 Cast-Iron Obsidian */
+      --dark-card: oklch(0.23 0.004 55);
+      --error: oklch(0.49 0.195 15);
+      --success: oklch(0.54 0.14 152);
+      --palette-label: "B · Ember Vermilion (#DC4319 on #F2F0EC)";
+    }
+
+    [data-palette="c"] {
+      /* Temperament C — Roasted Crimson & Sunlit Ivory (Bistro Modern) */
+      --bg-canvas: oklch(0.964 0.010 80);      /* #F7F3EC Sunlit Ivory */
+      --bg-surface: oklch(1 0 0);
+      --bg-subtle: oklch(0.935 0.011 76);
+      --fg-primary: oklch(0.21 0.012 38);      /* #1E1715 Deep Roast */
+      --fg-muted: oklch(0.46 0.014 45);
+      --border-hairline: oklch(0.89 0.011 76);
+      --accent: oklch(0.525 0.19 27);          /* #C83226 Heirloom Vermilion-Red */
+      --accent-hover: oklch(0.45 0.175 26);
+      --accent-soft: oklch(0.525 0.19 27 / 0.11);
+      --accent-fg: oklch(1 0 0);
+      --dark-plane: oklch(0.185 0.010 35);     /* #161211 Smoked Charcoal */
+      --dark-card: oklch(0.235 0.010 38);
+      --error: oklch(0.46 0.18 5);             /* Deep Rose-Berry (>= 20° hue gap!) */
+      --success: oklch(0.54 0.14 152);
+      --palette-label: "C · Roasted Crimson (#C83226 on #F7F3EC)";
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      background: var(--bg-canvas);
+      color: var(--fg-primary);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      transition: background-color 200ms ease-out, color 200ms ease-out;
+      padding-bottom: 112px;
+    }
+    [dir="rtl"] body,
+    [dir="rtl"] {
+      font-family: 'Alexandria', 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: 0 !important;
+    }
+    [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] button {
+      letter-spacing: 0 !important;
+    }
+
+    .tabular { font-variant-numeric: tabular-nums; }
+    .container { max-width: 1240px; margin: 0 auto; padding-inline: 24px; }
+
+    /* ---- Prototype Controls Bar (Strictly for Visual Testing!) ---- */
+    .proto-bar {
+      background: var(--dark-plane);
+      color: #F4F0E8;
+      padding: 10px 20px;
+      font-size: 13px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: relative;
+      z-index: 60;
+    }
+    .proto-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .proto-btn {
+      background: rgba(255,255,255,0.1);
+      color: #F4F0E8;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 9999px;
+      padding: 5px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      transition: background-color 150ms ease-out, transform 150ms ease-out;
+    }
+    .proto-btn:hover { background: rgba(255,255,255,0.2); }
+    .proto-btn[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: transparent;
+      color: var(--accent-fg);
+    }
+    .swatch { width: 10px; height: 10px; border-radius: 999px; display: inline-block; border: 1px solid rgba(255,255,255,0.5); }
+
+    /* ---- Floating Frosted Nav Pill (CoolDock × Playground) ---- */
+    .nav-wrap {
+      position: sticky;
+      top: 16px;
+      z-index: 40;
+      display: flex;
+      justify-content: center;
+      padding-inline: 16px;
+      margin-top: 18px;
+    }
+    .nav-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+      max-width: 780px;
+      padding: 8px 10px 8px 18px;
+      border-radius: 9999px;
+      background: color-mix(in oklab, var(--bg-surface) 82%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid color-mix(in oklab, var(--border-hairline) 80%, transparent);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 10px 30px -16px rgba(29,25,22,0.12);
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+      color: var(--fg-primary);
+      text-decoration: none;
+    }
+    .brand-ember {
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--fg-muted);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 150ms ease-out;
+    }
+    .nav-links a:hover { color: var(--fg-primary); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 9999px;
+      padding: 11px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+      transition: background-color 150ms ease-out, transform 150ms ease-out, border-color 150ms ease-out;
+    }
+    .btn:active:not(:disabled) { transform: scale(0.97); }
+    .btn-primary { background: var(--accent); color: var(--accent-fg); }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-outline {
+      background: transparent;
+      color: var(--fg-primary);
+      border: 1.5px solid var(--fg-primary);
+    }
+    .btn-outline:hover { background: var(--fg-primary); color: var(--bg-surface); }
+    .btn-subtle { background: var(--bg-subtle); color: var(--fg-primary); }
+    .btn-subtle:hover { background: color-mix(in oklab, var(--bg-subtle) 75%, var(--fg-primary) 8%); }
+    .btn-sm { padding: 8px 14px; font-size: 13.5px; }
+
+    /* ---- Hero Stage (Centered Monumental + Wide 16:9 Sunlit Table) ---- */
+    .hero {
+      padding: 56px 0 48px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.4vw, 4.4rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      max-width: 760px;
+      margin: 0 auto 18px;
+      text-wrap: balance;
+    }
+    .hero p {
+      max-width: 540px;
+      margin: 0 auto 28px;
+      color: var(--fg-muted);
+      font-size: 17px;
+      text-wrap: pretty;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .hero-stage {
+      position: relative;
+      border-radius: 36px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      max-height: 600px;
+      width: 100%;
+      background: var(--bg-subtle);
+      outline: 1px solid oklch(0 0 0 / 0.08);
+      outline-offset: -1px;
+    }
+    .hero-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-pill {
+      position: absolute;
+      bottom: 20px;
+      inset-inline-start: 20px;
+      background: color-mix(in oklab, var(--bg-surface) 90%, transparent);
+      backdrop-filter: blur(12px);
+      padding: 10px 16px;
+      border-radius: 9999px;
+      font-size: 13.5px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--fg-primary);
+    }
+
+    /* ---- Section Headings & Live Menu Grid ---- */
+    section { padding: 56px 0; }
+    .sec-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .sec-head h2 {
+      font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      font-weight: 700;
+    }
+    .tabs {
+      display: inline-flex;
+      gap: 6px;
+      background: var(--bg-subtle);
+      padding: 5px;
+      border-radius: 9999px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      border: none;
+      background: transparent;
+      color: var(--fg-muted);
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background-color 150ms ease-out, color 150ms ease-out;
+    }
+    .tab-btn[aria-selected="true"] {
+      background: var(--bg-surface);
+      color: var(--fg-primary);
+      box-shadow: 0 2px 8px rgba(29,25,22,0.06);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    @media (max-width: 960px) { .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 620px) { .menu-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+
+    .dish-card {
+      background: var(--bg-surface);
+      border-radius: 24px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 180ms ease-out, box-shadow 180ms ease-out;
+      position: relative;
+    }
+    @media (hover: hover) {
+      .dish-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 34px -22px rgba(29,25,22,0.18);
+      }
+    }
+    .dish-card.sold-out { opacity: 0.56; }
+    .dish-media {
+      aspect-ratio: 4 / 3;
+      border-radius: 16px; /* Concentric: 24px outer - 8px pad = 16px inner! */
+      overflow: hidden;
+      background: var(--bg-subtle);
+      position: relative;
+      outline: 1px solid oklch(0 0 0 / 0.08);
+      outline-offset: -1px;
+      cursor: pointer;
+    }
+    .dish-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sold-badge {
+      position: absolute;
+      top: 12px;
+      inset-inline-start: 12px;
+      background: var(--dark-plane);
+      color: #F4F0E8;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 9999px;
+    }
+    .dish-body {
+      padding: 14px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 6px;
+    }
+    .dish-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .dish-body h3 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .dish-desc {
+      color: var(--fg-muted);
+      font-size: 14.5px;
+      line-height: 1.48;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+    .dish-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-hairline);
+    }
+    .price { font-size: 17px; font-weight: 700; color: var(--fg-primary); }
+    .meta-kcal { font-size: 13px; color: var(--fg-muted); }
+
+    /* ---- Section 3: Phone Frame Interactive Split-Bill Preview ---- */
+    .split-showcase {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
+      background: var(--bg-surface);
+      border-radius: 36px;
+      padding: 44px;
+    }
+    @media (max-width: 860px) { .split-showcase { grid-template-columns: 1fr; padding: 28px; } }
+    .steps-list { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+    .step-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: var(--bg-canvas);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 9999px;
+      background: var(--accent-soft); color: var(--accent);
+      font-weight: 700; font-size: 13.5px;
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .phone-frame {
+      max-width: 340px;
+      width: 100%;
+      margin: 0 auto;
+      background: var(--bg-canvas);
+      border-radius: 38px;
+      padding: 14px;
+      border: 6px solid var(--fg-primary);
+      box-shadow: 0 28px 60px -24px rgba(29,25,22,0.22);
+    }
+    .phone-notch {
+      width: 84px; height: 18px; border-radius: 9999px;
+      background: var(--fg-primary);
+      margin: 0 auto 14px;
+    }
+    .phone-screen {
+      background: var(--bg-surface);
+      border-radius: 24px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .seg-control {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--bg-subtle);
+      padding: 4px;
+      border-radius: 12px;
+      gap: 4px;
+    }
+    .seg-control button {
+      border: none; background: transparent; padding: 7px 6px;
+      border-radius: 9px; font-size: 12.5px; font-weight: 600;
+      color: var(--fg-muted); cursor: pointer; font-family: inherit;
+    }
+    .seg-control button[aria-pressed="true"] {
+      background: var(--bg-surface); color: var(--fg-primary);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .diner-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13.5px; padding: 8px 0;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    /* ---- Section 4: Earned Dark Charcoal Band (Live /kds Preview) ---- */
+    .dark-band {
+      background: var(--dark-plane);
+      color: #F4F0E8;
+      border-radius: 36px;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    @media (max-width: 860px) { .dark-band { grid-template-columns: 1fr; padding: 28px; } }
+    .kds-ticket {
+      background: var(--dark-card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .kds-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .kds-status {
+      padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 700;
+      background: color-mix(in oklab, var(--accent) 26%, transparent); color: #FFB49E;
+    }
+    .kds-status.ready { background: oklch(0.54 0.14 152 / 0.25); color: #8EF0B8; }
+    .kds-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ---- Section 5: Signature Editorial Footer + Halftone Canvas + Daylight Joke ---- */
+    footer {
+      margin-top: 40px;
+      border-top: 1px solid var(--border-hairline);
+      padding-top: 40px;
+    }
+    .footer-socket {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding-bottom: 24px;
+    }
+    .daylight-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+    .easter-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--fg-muted);
+    }
+    .switch-btn {
+      width: 52px; height: 28px; border-radius: 9999px;
+      background: var(--bg-subtle); border: 1px solid var(--border-hairline);
+      padding: 3px; cursor: pointer; display: flex; align-items: center;
+    }
+    .switch-knob {
+      width: 20px; height: 20px; border-radius: 9999px;
+      background: var(--accent);
+      transition: transform 180ms ease-out;
+    }
+    .halftone-wrap {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border-radius: 24px;
+      margin-top: 8px;
+    }
+    #halftoneCanvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+
+    /* ---- Floating Dark Charcoal Cart Dock (CoolDock Spirit) ---- */
+    .cart-dock {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(130%);
+      z-index: 50;
+      background: var(--dark-plane);
+      color: #F4F0E8;
+      padding: 10px 12px 10px 20px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 22px 46px -14px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+      max-width: calc(100vw - 24px);
+    }
+    .cart-dock.visible { transform: translateX(-50%) translateY(0); }
+
+    /* ---- Customizer Drawer ---- */
+    .drawer-backdrop {
+      position: fixed; inset: 0; background: rgba(23,20,18,0.45);
+      backdrop-filter: blur(4px); z-index: 70;
+      display: none; justify-content: flex-end;
+    }
+    .drawer-backdrop.open { display: flex; }
+    .drawer {
+      width: min(460px, 100vw); height: 100%;
+      background: var(--bg-surface); padding: 24px;
+      display: flex; flex-direction: column; gap: 18px;
+      overflow-y: auto; overscroll-behavior: contain;
+    }
+    .opt-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 14px; border-radius: 14px; border: 1.5px solid var(--border-hairline);
+      cursor: pointer; margin-top: 8px; font-size: 14.5px;
+    }
+    .opt-row input { accent-color: var(--accent); width: 18px; height: 18px; }
+
+    /* ---- Toast ---- */
+    .toast {
+      position: fixed; top: 82px; left: 50%; transform: translateX(-50%) translateY(-16px);
+      background: var(--dark-plane); color: #F4F0E8;
+      padding: 12px 20px; border-radius: 16px; font-size: 14px; font-weight: 500;
+      box-shadow: 0 18px 40px -12px rgba(0,0,0,0.4);
+      opacity: 0; pointer-events: none; z-index: 90; max-width: min(520px, 92vw); text-align: center;
+      transition: opacity 200ms ease-out, transform 200ms ease-out;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <!-- Prototype Live Tester Bar (Compare Palettes A/B/C + EN/ar-EG RTL!) -->
+  <div class="proto-bar">
+    <div class="proto-group">
+      <strong>LIVE VISUAL PROTOTYPE:</strong>
+      <button class="proto-btn" data-set-palette="a" aria-pressed="true"><span class="swatch" style="background:#CC4524"></span> Palette A · Kiln Terracotta</button>
+      <button class="proto-btn" data-set-palette="b" aria-pressed="false"><span class="swatch" style="background:#DC4319"></span> Palette B · Ember Vermilion</button>
+      <button class="proto-btn" data-set-palette="c" aria-pressed="false"><span class="swatch" style="background:#C83226"></span> Palette C · Roasted Crimson</button>
+    </div>
+    <div class="proto-group">
+      <button class="proto-btn" id="langToggle">Switch to عربي مصري (RTL)</button>
+    </div>
+  </div>
+
+  <!-- Floating Frosted Nav Pill -->
+  <div class="nav-wrap">
+    <nav class="nav-pill" aria-label="Main navigation">
+      <a href="#top" class="brand-mark">
+        <!-- Sleek Minimalist Ember Mascot Placeholder Icon -->
+        <svg class="brand-ember" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 3C16 3 25 10.5 25 18.5C25 24 21 28.5 16 28.5C11 28.5 7 24 7 18.5C7 14 10 10.5 11.5 9C11.2 11.8 12.6 13.5 14 14C13.6 9.6 16 3 16 3Z" fill="currentColor"/>
+          <path d="M11.6 18.4L14.5 19.6C14.1 21 12.2 21.3 11.4 20.1C11.1 19.6 11.2 18.9 11.6 18.4Z" fill="#FFF"/>
+          <path d="M20.4 18.4L17.5 19.6C17.9 21 19.8 21.3 20.6 20.1C20.9 19.6 20.8 18.9 20.4 18.4Z" fill="#FFF"/>
+        </svg>
+        <bdi dir="ltr">250°</bdi>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#menu" data-i18n="navMenu">Menu</a></li>
+        <li><a href="#table-flow" data-i18n="navTable">Table Order</a></li>
+        <li><a href="#kds-preview" data-i18n="navKds">Kitchen Pass</a></li>
+      </ul>
+      <a href="#menu" class="btn btn-primary btn-sm" data-i18n="navOrder">Order Now</a>
+    </nav>
+  </div>
+
+  <main id="top" class="container">
+    <!-- Section 1: Sunlit Hero Stage -->
+    <section class="hero">
+      <h1 data-i18n="heroTitle">Open-fire burgers, stone-deck pizza, and live table ordering.</h1>
+      <p data-i18n="heroSub">Scan your table QR, add dishes with your friends in real time, and split the bill in one tap.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="joinDemoTable()" data-i18n="ctaJoin">Join Table 5</button>
+        <a href="#menu" class="btn btn-outline" data-i18n="ctaMenu">Browse Menu</a>
+      </div>
+      <div class="hero-stage">
+        <img src="file:///Users/apple/.gemini/antigravity/brain/11924fc1-316b-4c3f-9c4f-bbc9da12af0c/hero_sunlit_hearth_table_1795087848354.jpg" alt="Sunlit open-fire table spread with smash burger, stone-deck pizza, fries, and sparkling lemon mint" />
+        <div class="hero-pill">
+          <span style="width:8px;height:8px;border-radius:99px;background:var(--success);"></span>
+          <span class="tabular" data-i18n="prepPill">Kitchen prep ~12 min · Open till 1 AM</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Live Signature Menu -->
+    <section id="menu">
+      <div class="sec-head">
+        <h2 data-i18n="menuTitle">Fresh off the fire</h2>
+        <div class="tabs" role="tablist">
+          <button class="tab-btn" data-cat="all" aria-selected="true" data-i18n="catAll">All</button>
+          <button class="tab-btn" data-cat="burgers" aria-selected="false" data-i18n="catBurgers">Burgers</button>
+          <button class="tab-btn" data-cat="pizza" aria-selected="false" data-i18n="catPizza">Pizza</button>
+          <button class="tab-btn" data-cat="grill" aria-selected="false" data-i18n="catGrill">Grill</button>
+          <button class="tab-btn" data-cat="sides" aria-selected="false" data-i18n="catSides">Sides &amp; Drinks</button>
+        </div>
+      </div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </section>
+
+    <!-- Section 3: Your Table Menu Lives On Your Phone -->
+    <section id="table-flow">
+      <div class="split-showcase">
+        <div>
+          <h2 data-i18n="flowTitle">One table. Zero awkward bill math.</h2>
+          <div class="steps-list">
+            <div class="step-item">
+              <div class="step-num tabular">1</div>
+              <div>
+                <strong data-i18n="step1t">Scan Table QR &amp; 4-digit PIN</strong>
+                <div style="color:var(--fg-muted);font-size:14.5px;" data-i18n="step1d">Everyone at Table 5 joins the same live cart with no app download.</div>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num tabular">2</div>
+              <div>
+                <strong data-i18n="step2t">Add your own build together</strong>
+                <div style="color:var(--fg-muted);font-size:14.5px;" data-i18n="step2d">Every dish carries your name tag and updates across every phone instantly.</div>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num tabular">3</div>
+              <div>
+                <strong data-i18n="step3t">Split cleanly &amp; track live</strong>
+                <div style="color:var(--fg-muted);font-size:14.5px;" data-i18n="step3d">Pay the whole table, pay only your items, or split equally to the exact piaster.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clean Sunlit Phone Frame -->
+        <div class="phone-frame" aria-label="Interactive mobile table split preview">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <strong data-i18n="phoneTable">Table 5 · 3 Diners</strong>
+              <span class="tabular" style="font-size:12.5px;color:var(--fg-muted);">PIN 4829</span>
+            </div>
+            <div class="seg-control">
+              <button data-split="full" aria-pressed="false" data-i18n="splitFull">Full</button>
+              <button data-split="mine" aria-pressed="true" data-i18n="splitMine">My Items</button>
+              <button data-split="equal" aria-pressed="false" data-i18n="splitEqual">Split ÷ 3</button>
+            </div>
+            <div>
+              <div class="diner-row"><span>Double Smash · Omar</span><strong class="tabular">245 EGP</strong></div>
+              <div class="diner-row"><span>Hot Honey Pizza · Salma</span><strong class="tabular">295 EGP</strong></div>
+              <div class="diner-row"><span>Loaded Fries · Shared</span><strong class="tabular">185 EGP</strong></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:4px;">
+              <span style="font-size:13.5px;color:var(--fg-muted);" data-i18n="yourShare">Your share</span>
+              <strong class="tabular" id="splitAmount" style="font-size:24px;color:var(--accent);">307 EGP</strong>
+            </div>
+            <button class="btn btn-primary" style="width:100%;" onclick="fireToast('orderFired')" data-i18n="fireOrder">Fire Order</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Earned Dark Charcoal Contrast Band (/kds Preview) -->
+    <section id="kds-preview">
+      <div class="dark-band">
+        <div>
+          <h2 style="font-size:clamp(1.9rem,3vw,2.5rem);line-height:1.15;margin-bottom:14px;" data-i18n="kdsTitle">Built for real kitchen heat.</h2>
+          <p style="color:#B4ABA1;margin-bottom:24px;max-width:440px;" data-i18n="kdsSub">While diners enjoy sunlit daylight, kitchen staff run on a glare-free dark charcoal Pass — tap 86 to lock a sold-out dish across every table immediately.</p>
+          <button class="btn btn-primary" id="toggle86Btn" onclick="toggle86Smash()" data-i18n="btn86">Simulate 86 · Mark Double Smash Sold Out</button>
+        </div>
+        <div class="kds-ticket">
+          <div class="kds-head">
+            <div>
+              <strong class="tabular" style="font-size:18px;">#104 · Table 5</strong>
+              <div style="font-size:13px;color:#A59C92;">03:42 elapsed · 3 items</div>
+            </div>
+            <span class="kds-status" id="kdsBadge">Preparing</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:14.5px;">
+            <div><strong>2×</strong> Double Smash <span style="color:#A59C92;">(No onions, Extra cheddar)</span></div>
+            <div><strong>1×</strong> Hot Honey Double Pepperoni</div>
+            <div><strong>1×</strong> Loaded Smash Fries</div>
+          </div>
+          <div class="kds-actions">
+            <button class="btn btn-primary btn-sm" id="kdsNextBtn" onclick="advanceKds()" data-i18n="kdsMarkReady">Mark Ready</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Signature Editorial Footer + Halftone Canvas + Daylight Easter Egg -->
+    <footer>
+      <div class="footer-socket">
+        <div style="font-size:14px;color:var(--fg-muted);">
+          <strong style="color:var(--fg-primary);"><bdi dir="ltr">250°</bdi></strong> · <span data-i18n="footerTag">Open-Fire Kitchen, Cairo</span> · <span style="opacity:0.75;">Powered by Firepass</span>
+        </div>
+        <div class="daylight-wrap">
+          <span class="easter-hint">
+            <span data-i18n="tryDark">Try dark mode</span>
+            <!-- Minimal 1.5px editorial curved ink arrow -->
+            <svg width="26" height="16" viewBox="0 0 26 16" fill="none" aria-hidden="true">
+              <path d="M2 12C8 12 14 10 22 5M22 5L16.5 4.2M22 5L20 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <button class="switch-btn" id="daylightSwitch" aria-label="Theme mode toggle" onclick="triggerDaylightJoke()">
+            <span class="switch-knob" id="switchKnob"></span>
+          </button>
+          <a href="#top" style="font-size:13.5px;font-weight:600;color:var(--fg-primary);text-decoration:none;margin-inline-start:12px;" data-i18n="backTop">Back to top ↑</a>
+        </div>
+      </div>
+      <div class="halftone-wrap">
+        <canvas id="halftoneCanvas" aria-label="Interactive 250° halftone wordmark"></canvas>
+      </div>
+    </footer>
+  </main>
+
+  <!-- CoolDock Floating Dark Cart Dock -->
+  <div class="cart-dock" id="cartDock" role="region" aria-label="Table cart summary">
+    <span style="font-size:13.5px;color:#B4ABA1;" id="dockTableLabel">Table 5</span>
+    <strong class="tabular" id="dockTotal" style="font-size:16px;">0 EGP</strong>
+    <button class="btn btn-primary btn-sm" onclick="fireToast('checkoutOpen')" data-i18n="openCart">Open Cart</button>
+  </div>
+
+  <!-- Dish Customizer Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="if(event.target===this) closeDrawer()">
+    <div class="drawer" role="dialog" aria-modal="true">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h3 id="drawerTitle" style="font-size:22px;font-weight:700;">Double Smash</h3>
+        <button class="btn btn-subtle btn-sm" onclick="closeDrawer()">✕</button>
+      </div>
+      <img id="drawerImg" src="" alt="" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:18px;" />
+      <p id="drawerDesc" style="color:var(--fg-muted);font-size:14.5px;"></p>
+      <div>
+        <strong style="font-size:14px;" data-i18n="pattyOpt">Size / Style (Required)</strong>
+        <label class="opt-row"><span><input type="radio" name="size" value="0" checked onchange="recalcDrawer()"> Standard Build</span><span class="tabular">+0 EGP</span></label>
+        <label class="opt-row"><span><input type="radio" name="size" value="75" onchange="recalcDrawer()"> Upgrade / Large</span><span class="tabular">+75 EGP</span></label>
+      </div>
+      <div>
+        <strong style="font-size:14px;" data-i18n="addonsOpt">Add Extras</strong>
+        <label class="opt-row"><span><input type="checkbox" value="25" onchange="recalcDrawer()"> Extra Cheddar</span><span class="tabular">+25 EGP</span></label>
+        <label class="opt-row"><span><input type="checkbox" value="30" onchange="recalcDrawer()"> Black Truffle Aioli Dip</span><span class="tabular">+30 EGP</span></label>
+      </div>
+      <div style="margin-top:auto;padding-top:16px;">
+        <button class="btn btn-primary" style="width:100%;" onclick="confirmDrawerAdd()" id="drawerAddBtn">Add to Table · 245 EGP</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const IMG_BASE = 'file:///Users/apple/.gemini/antigravity/brain/11924fc1-316b-4c3f-9c4f-bbc9da12af0c/';
+    const DISHES = [
+      { id: 'smash', cat: 'burgers', price: 245, kcal: '740 kcal', img: 'dish_double_smash_burger_v2_1795087868209.jpg', en: { name: 'Double Smash', desc: 'Two seared beef patties, melted cheddar, pickles, caramelized onions, 250° sauce.' }, ar: { name: 'دبل سماش', desc: 'قطعتين بيف سماش ع الجريل، شيدر سايح، خيار مخلل، بصل مكرمل، وصوص 250°.' } },
+      { id: 'pizza', cat: 'pizza', price: 295, kcal: '960 kcal', img: 'dish_stone_deck_pizza_clean_1795087879538.jpg', en: { name: 'Hot Honey Pepperoni', desc: '48h stone-baked dough, cupped beef pepperoni, buffalo mozzarella, wildflower hot honey.' }, ar: { name: 'دبل بيبروني بالعسل الحراق', desc: 'عجينة فرن حجر متخمرة 48 ساعة، بيبروني بيف، موتزاريلا فريش، وعسل حراق.' } },
+      { id: 'kofta', cat: 'grill', price: 320, kcal: '820 kcal', img: 'dish_charcoal_kofta_grill_1795087935598.jpg', en: { name: 'Charcoal Kofta Platter', desc: 'Three oak-charcoal beef skewers, saffron basmati, charred cherry tomato, creamy tahina.' }, ar: { name: 'طبق كفتة ع الفحم', desc: '3 أسياخ كفتة لحم ع الفحم، رز بسمتي مبهر، طماطم مشوية، وطحينة بيتي.' } },
+      { id: 'fries', cat: 'sides', price: 185, kcal: '640 kcal', img: 'dish_loaded_smash_fries_1795087941475.jpg', en: { name: 'Loaded Smash Fries', desc: 'Skin-on crisp fries, smashed beef crumbles, warm cheddar sauce, pickles, 250° drizzle.' }, ar: { name: 'بطاطس لودد بالسماش', desc: 'بطاطس مقرمشة بقشرها عليها بيف سماش مفروم، صوص شيدر سخن، وهالبينو.' } },
+      { id: 'lemon', cat: 'sides', price: 45, kcal: '115 kcal', img: 'dish_sparkling_lemon_mint_v2_1795087994328.jpg', en: { name: 'Sparkling Lemon Mint', desc: 'Chilled Egyptian sparkling lemon soda over clear ice with bruised fresh mint.' }, ar: { name: 'ليمون نعناع فوار', desc: 'صودا ليمون بالنعناع ساقعة مع تلج وورق نعناع فريش.' } },
+      { id: 'pie', cat: 'sides', price: 115, kcal: '440 kcal', img: 'dish_crispy_turnover_pie_1795087944266.jpg', en: { name: 'Hot Crispy Turnover Pie', desc: 'Blistered golden hand pie baked crisp to order with spiced apple or Nutella kunafa.' }, ar: { name: 'فطيرة سخنة مقرمشة', desc: 'فطيرة مقرمشة بتتخبز بالطلب — تفاح بالقرفة أو نوتيلا مع كنافة محمصة.' } },
+    ];
+
+    const COPY = {
+      en: {
+        navMenu: 'Menu', navTable: 'Table Order', navKds: 'Kitchen Pass', navOrder: 'Order Now',
+        heroTitle: 'Open-fire burgers, stone-deck pizza, and live table ordering.',
+        heroSub: 'Scan your table QR, add dishes with your friends in real time, and split the bill in one tap.',
+        ctaJoin: 'Join Table 5', ctaMenu: 'Browse Menu', prepPill: 'Kitchen prep ~12 min · Open till 1 AM',
+        menuTitle: 'Fresh off the fire', catAll: 'All', catBurgers: 'Burgers', catPizza: 'Pizza', catGrill: 'Grill', catSides: 'Sides & Drinks',
+        flowTitle: 'One table. Zero awkward bill math.',
+        step1t: 'Scan Table QR & 4-digit PIN', step1d: 'Everyone at Table 5 joins the same live cart with no app download.',
+        step2t: 'Add your own build together', step2d: 'Every dish carries your name tag and updates across every phone instantly.',
+        step3t: 'Split cleanly & track live', step3d: 'Pay the whole table, pay only your items, or split equally to the exact piaster.',
+        phoneTable: 'Table 5 · 3 Diners', splitFull: 'Full', splitMine: 'My Items', splitEqual: 'Split ÷ 3',
+        yourShare: 'Your share', fireOrder: 'Fire Order',
+        kdsTitle: 'Built for real kitchen heat.', kdsSub: 'While diners enjoy sunlit daylight, kitchen staff run on a glare-free dark charcoal Pass — tap 86 to lock a sold-out dish across every table immediately.',
+        btn86: 'Simulate 86 · Mark Double Smash Sold Out', btn86On: 'Restore Double Smash Stock',
+        kdsMarkReady: 'Mark Ready', footerTag: 'Open-Fire Kitchen, Cairo', tryDark: 'Try dark mode', backTop: 'Back to top ↑',
+        openCart: 'Open Cart', addBtn: '+ Add', soldOut: 'Sold out',
+        daylightJoke: 'Open kitchen, sunlit daylight only — no dark kitchens here. (Dark mode lives strictly on the Kitchen Pass!)',
+        orderFired: 'Order #105 fired to Kitchen Pass — live prep ~12 min.',
+        checkoutOpen: 'Shared Table 5 cart synced — ready for split checkout!'
+      },
+      ar: {
+        navMenu: 'المنيو', navTable: 'طلب الترابيزة', navKds: 'شاشة المطبخ', navOrder: 'اطلب دلوقتي',
+        heroTitle: 'برجر ع النار، بيتزا فرن حجر، وطلب جماعي للترابيزة لايف.',
+        heroSub: 'اعمل سكان لـ QR الترابيزة، اطلب مع صحابك في نفس السلة، واقسموا الحساب بضغطة واحدة.',
+        ctaJoin: 'ادخل ترابيزة 5', ctaMenu: 'شوف المنيو', prepPill: 'تجهيز المطبخ ~12 دقيقة · فاتحين لـ 1 ص',
+        menuTitle: 'طازة من ع النار', catAll: 'الكل', catBurgers: 'برجر', catPizza: 'بيتزا', catGrill: 'مشويات', catSides: 'بطاطس ومشروبات',
+        flowTitle: 'ترابيزة واحدة. ومن غير لخبطة في الحساب.',
+        step1t: 'سكان QR وكود الترابيزة', step1d: 'كل اللي ع ترابيزة 5 بيدخلوا نفس السلة من غير تحميل أبلكيشن.',
+        step2t: 'كل واحد يظبط أكله براحته', step2d: 'كل صنف بيتسجل باسم صاحبه وبيظهر عند الكل في نفس اللحظة.',
+        step3t: 'اقسم الحساب وتابع الطلب لايف', step3d: 'ادفع للترابيزة كلها، أو أكلك بس، أو اقسم بالتساوي بالقرش.',
+        phoneTable: 'ترابيزة 5 · 3 أفراد', splitFull: 'الكلي', splitMine: 'أكلي بس', splitEqual: 'قسمة ÷ 3',
+        yourShare: 'نصيبك', fireOrder: 'ابعت للمطبخ',
+        kdsTitle: 'متصممة لحرارة المطبخ بجد.', kdsSub: 'الزبون بيشوف مطبخ منوّر بنور النهار، والشيف شغال على شاشة غامقة مريحة للعين — ولو صنف خلص بيقفله لحظياً على كل الترابيزات.',
+        btn86: 'جرّب 86 · اقفل دبل سماش (خلصان)', btn86On: 'رجّع دبل سماش للمنيو',
+        kdsMarkReady: 'جاهز للتقديم', footerTag: 'مطبخ نار مفتوح، القاهرة', tryDark: 'جرّب الدارك مود', backTop: 'اطلع فوق ↑',
+        openCart: 'افتح السلة', addBtn: '+ ضيف', soldOut: 'خلصان النهارده',
+        daylightJoke: 'إحنا مطبخ مفتوح بنطبخ في النور مش في الضلمة! (الدارك مود للشيف بس على شاشة المطبخ)',
+        orderFired: 'طلب #105 وصل شاشة المطبخ — التجهيز ~12 دقيقة.',
+        checkoutOpen: 'سلة ترابيزة 5 جاهزة لتقسيم الحساب!'
+      }
+    };
+
+    let lang = 'en';
+    let activeCat = 'all';
+    let smashSoldOut = false;
+    let cartTotal = 0;
+    let cartCount = 0;
+    let activeDish = null;
+
+    function renderMenu() {
+      const grid = document.getElementById('menuGrid');
+      const items = activeCat === 'all' ? DISHES : DISHES.filter(d => d.cat === activeCat);
+      const currency = lang === 'en' ? 'EGP' : 'ج.م';
+      grid.innerHTML = items.map(d => {
+        const isOut = d.id === 'smash' && smashSoldOut;
+        const t = d[lang];
+        return `
+          <article class="dish-card ${isOut ? 'sold-out' : ''}">
+            <div class="dish-media" onclick="${isOut ? '' : `openDrawer('${d.id}')`}">
+              <img src="${IMG_BASE}${d.img}" alt="${t.name}" />
+              ${isOut ? `<span class="sold-badge">${COPY[lang].soldOut}</span>` : ''}
+            </div>
+            <div class="dish-body">
+              <div class="dish-title-row">
+                <h3>${t.name}</h3>
+                <span class="meta-kcal tabular">${d.kcal}</span>
+              </div>
+              <p class="dish-desc">${t.desc}</p>
+              <div class="dish-foot">
+                <span class="price tabular"><bdi dir="ltr">${d.price}</bdi> ${currency}</span>
+                <button class="btn btn-primary btn-sm" ${isOut ? 'disabled' : ''} onclick="quickAdd(${d.price})">${isOut ? COPY[lang].soldOut : COPY[lang].addBtn}</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function applyCopy() {
+      document.documentElement.lang = lang === 'ar' ? 'ar-EG' : 'en';
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (k === 'btn86') {
+          el.textContent = smashSoldOut ? COPY[lang].btn86On : COPY[lang].btn86;
+        } else if (COPY[lang][k]) {
+          el.textContent = COPY[lang][k];
+        }
+      });
+      document.getElementById('langToggle').textContent = lang === 'en' ? 'Switch to عربي مصري (RTL)' : 'Switch to English (LTR)';
+      updateDock();
+      renderMenu();
+    }
+
+    function quickAdd(price) {
+      cartTotal += price;
+      cartCount += 1;
+      updateDock();
+    }
+    function joinDemoTable() {
+      if (cartCount === 0) quickAdd(245);
+      document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+    }
+    function updateDock() {
+      const dock = document.getElementById('cartDock');
+      const currency = lang === 'en' ? 'EGP' : 'ج.م';
+      document.getElementById('dockTableLabel').textContent = lang === 'en' ? `Table 5 · ${cartCount} items` : `ترابيزة 5 · ${cartCount} أصناف`;
+      document.getElementById('dockTotal').textContent = `${cartTotal} ${currency}`;
+      dock.classList.toggle('visible', cartCount > 0);
+    }
+
+    function openDrawer(id) {
+      activeDish = DISHES.find(d => d.id === id);
+      document.getElementById('drawerTitle').textContent = activeDish[lang].name;
+      document.getElementById('drawerDesc').textContent = activeDish[lang].desc;
+      document.getElementById('drawerImg').src = IMG_BASE + activeDish.img;
+      document.querySelectorAll('#drawerBackdrop input[type="checkbox"]').forEach(c => c.checked = false);
+      document.querySelector('#drawerBackdrop input[name="size"][value="0"]').checked = true;
+      recalcDrawer();
+      document.getElementById('drawerBackdrop').classList.add('open');
+    }
+    function closeDrawer() { document.getElementById('drawerBackdrop').classList.remove('open'); }
+    function recalcDrawer() {
+      if (!activeDish) return;
+      const sizeDelta = Number(document.querySelector('#drawerBackdrop input[name="size"]:checked')?.value || 0);
+      let extra = 0;
+      document.querySelectorAll('#drawerBackdrop input[type="checkbox"]:checked').forEach(c => extra += Number(c.value));
+      const total = activeDish.price + sizeDelta + extra;
+      document.getElementById('drawerAddBtn').textContent = lang === 'en' ? `Add to Table · ${total} EGP` : `ضيف للترابيزة · ${total} ج.م`;
+      document.getElementById('drawerAddBtn').dataset.total = total;
+    }
+    function confirmDrawerAdd() {
+      quickAdd(Number(document.getElementById('drawerAddBtn').dataset.total || activeDish.price));
+      closeDrawer();
+    }
+
+    function toggle86Smash() {
+      smashSoldOut = !smashSoldOut;
+      applyCopy();
+    }
+    function advanceKds() {
+      const b = document.getElementById('kdsBadge');
+      const ready = b.classList.toggle('ready');
+      b.textContent = ready ? (lang === 'en' ? 'Ready' : 'جاهز') : (lang === 'en' ? 'Preparing' : 'بيتجهز');
+    }
+
+    let toastTimer;
+    function fireToast(key) {
+      const el = document.getElementById('toast');
+      el.textContent = COPY[lang][key];
+      el.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 4200);
+    }
+    function triggerDaylightJoke() {
+      const knob = document.getElementById('switchKnob');
+      knob.style.transform = 'translateX(22px)';
+      fireToast('daylightJoke');
+      setTimeout(() => { knob.style.transform = 'translateX(0px)'; }, 340);
+    }
+
+    // Palette Switcher
+    document.querySelectorAll('[data-set-palette]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const p = btn.getAttribute('data-set-palette');
+        document.documentElement.setAttribute('data-palette', p);
+        document.querySelectorAll('[data-set-palette]').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+        drawHalftone();
+      });
+    });
+
+    // Language Switcher
+    document.getElementById('langToggle').addEventListener('click', () => {
+      lang = lang === 'en' ? 'ar' : 'en';
+      applyCopy();
+    });
+
+    // Category Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeCat = btn.getAttribute('data-cat');
+        document.querySelectorAll('.tab-btn').forEach(b => b.setAttribute('aria-selected', String(b === btn)));
+        renderMenu();
+      });
+    });
+
+    // Phone Split Switcher
+    const SPLIT_VALS = { full: '725 EGP', mine: '307 EGP', equal: '242 EGP' };
+    document.querySelectorAll('[data-split]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-split]').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+        document.getElementById('splitAmount').textContent = SPLIT_VALS[btn.getAttribute('data-split')];
+      });
+    });
+
+    // Lightweight 2D Canvas Halftone 250° Wordmark Ripple (Cue Design × Imgrain Spirit)
+    const canvas = document.getElementById('halftoneCanvas');
+    const ctx = canvas.getContext('2d');
+    let mouse = { x: -999, y: -999 };
+    let pts = [];
+    function initHalftone() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = canvas.clientWidth || 1000;
+      const h = canvas.clientHeight || 180;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const off = document.createElement('canvas');
+      off.width = w; off.height = h;
+      const octx = off.getContext('2d');
+      octx.fillStyle = '#000';
+      octx.font = `800 ${Math.min(w * 0.22, 165)}px "Plus Jakarta Sans", sans-serif`;
+      octx.textAlign = 'center'; octx.textBaseline = 'middle';
+      octx.fillText('250° KITCHEN', w / 2, h / 2 + 8);
+      const img = octx.getImageData(0, 0, w, h).data;
+      pts = [];
+      const gap = 8;
+      for (let y = 0; y < h; y += gap) {
+        for (let x = 0; x < w; x += gap) {
+          if (img[(y * w + x) * 4 + 3] > 110) pts.push({ x, y });
+        }
+      }
+      drawHalftone();
+    }
+    function drawHalftone() {
+      const w = canvas.clientWidth || 1000, h = canvas.clientHeight || 180;
+      ctx.clearRect(0, 0, w, h);
+      const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+      const base = getComputedStyle(document.documentElement).getPropertyValue('--fg-muted').trim();
+      for (const p of pts) {
+        const dist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        const near = dist < 90;
+        const r = near ? 2.4 + (1 - dist / 90) * 1.9 : 2.1;
+        ctx.fillStyle = near ? accent : base;
+        ctx.globalAlpha = near ? 0.85 : 0.22;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+    canvas.addEventListener('mousemove', e => {
+      const r = canvas.getBoundingClientRect();
+      mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+      drawHalftone();
+    });
+    canvas.addEventListener('mouseleave', () => { mouse = { x: -999, y: -999 }; drawHalftone(); });
+    window.addEventListener('resize', initHalftone);
+
+    applyCopy();
+    setTimeout(initHalftone, 120);
+  </script>
+</body>
+</html>

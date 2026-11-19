@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560" role="img" aria-labelledby="title-c1 desc-c1">
+  <title id="title-c1">250° Kitchen — Concept 1: The Hearth Dial Brand Specimen</title>
+  <desc id="desc-c1">Modular geometric 250° vector mark with rotational 2 and 5 geometry, oversized ember-terracotta degree ring, bilingual English and Arabic lockup, dark KDS variant, packaging seal, and optical favicons.</desc>
+  <defs>
+    <style>
+      .label { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; fill: #6B6259; }
+      .sub-en { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 600; letter-spacing: 0.22em; }
+      .sub-ar { font-family: 'Alexandria', 'IBM Plex Sans Arabic', 'Geeza Pro', 'Tahoma', sans-serif; font-weight: 600; letter-spacing: 0; }
+      .seal-txt { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; }
+    </style>
+
+    <!-- Reusable Pure-Vector 250 Mark (180-deg rotational cousin 2 & 5 + pill 0) on 196x84 coordinate box -->
+    <g id="numerals-250">
+      <!-- Digit 2: stroke-width 14, modular rounded-square corners, crisp flat terminals -->
+      <path d="M 10 25 V 17 A 10 10 0 0 1 20 7 H 42 A 10 10 0 0 1 52 17 V 31 A 10 10 0 0 1 42 41 H 20 A 10 10 0 0 0 10 51 V 75 H 55"
+            fill="none" stroke-width="14" stroke-linecap="butt" stroke-linejoin="round"/>
+      <!-- Digit 5: exact modular rotational twin of 2 -->
+      <path d="M 119 7 H 74 V 31 A 10 10 0 0 0 84 41 H 106 A 10 10 0 0 1 116 51 V 65 A 10 10 0 0 1 106 75 H 84 A 10 10 0 0 1 74 65 V 57"
+            fill="none" stroke-width="14" stroke-linecap="butt" stroke-linejoin="round"/>
+      <!-- Digit 0: architectural pill-oval matching width & corner geometry -->
+      <rect x="137" y="7" width="44" height="68" rx="18" ry="18"
+            fill="none" stroke-width="14"/>
+    </g>
+
+    <!-- Oversized Hollow Ember Degree Ring -->
+    <g id="degree-ring">
+      <circle cx="204" cy="18" r="11.5" fill="none" stroke-width="7.5"/>
+    </g>
+
+    <!-- Circular Path for Tamper Seal -->
+    <path id="seal-arc-top" d="M 55 110 A 55 55 0 0 1 165 110" fill="none"/>
+    <path id="seal-arc-bot" d="M 165 110 A 55 55 0 0 1 55 110" fill="none"/>
+  </defs>
+
+  <!-- Canvas Background (Sunlit Warm Linen) -->
+  <rect width="960" height="560" rx="28" fill="#F4F0E8"/>
+
+  <!-- Header Strip -->
+  <text x="40" y="42" class="label">CONCEPT 01 · THE HEARTH DIAL · MODULAR GEOMETRIC + OVERSIZED EMBER DEGREE RING</text>
+  <line x1="40" y1="56" x2="920" y2="56" stroke="#E4DDD2" stroke-width="1"/>
+
+  <!-- TILE A: Primary Light Bilingual Lockup -->
+  <rect x="40" y="76" width="560" height="256" rx="24" fill="#FFFFFF"/>
+  <text x="64" y="106" class="label">TIER A · PRIMARY BILINGUAL LOCKUP (LIGHT LINEN / NAVBAR &amp; HERO)</text>
+  <g id="primary-lockup" transform="translate(154, 146) scale(1.15)">
+    <use href="#numerals-250" stroke="#1D1916"/>
+    <use href="#degree-ring" stroke="#CC4524"/>
+  </g>
+  <!-- Barn's-inspired optical bilingual descriptor -->
+  <line x1="168" y1="264" x2="432" y2="264" stroke="#E4DDD2" stroke-width="1"/>
+  <text x="278" y="294" text-anchor="end" fill="#1D1916" font-size="16" class="sub-en">kitchen</text>
+  <circle cx="300" cy="288" r="3" fill="#CC4524"/>
+  <text x="322" y="294" text-anchor="start" fill="#1D1916" font-size="18" class="sub-ar">مطبخ</text>
+
+  <!-- TILE B: Dark Charcoal Contrast Variant (Cart Dock & /kds) -->
+  <rect x="620" y="76" width="300" height="256" rx="24" fill="#171412"/>
+  <text x="644" y="106" class="label" fill="#9E9489">DARK PLANE · CART DOCK &amp; /KDS</text>
+  <g id="dark-lockup" transform="translate(668, 166) scale(0.92)">
+    <use href="#numerals-250" stroke="#F4F0E8"/>
+    <use href="#degree-ring" stroke="#EB4A1E"/>
+  </g>
+  <text x="770" y="286" text-anchor="middle" fill="#A99F95" font-size="13" class="sub-en">250° PASS · LIVE KDS</text>
+
+  <!-- TILE C: Packaging Seal / Tamper Sticker -->
+  <rect x="40" y="352" width="300" height="172" rx="24" fill="#ECE6DC"/>
+  <text x="64" y="380" class="label">TIER C · TAMPER SEAL STICKER</text>
+  <g id="packaging-seal" transform="translate(80, 344)">
+    <circle cx="110" cy="108" r="66" fill="#CC4524"/>
+    <circle cx="110" cy="108" r="59" fill="none" stroke="#F4F0E8" stroke-width="1.25" stroke-dasharray="3 3" opacity="0.65"/>
+    <g transform="translate(62, 89) scale(0.43)">
+      <use href="#numerals-250" stroke="#F4F0E8"/>
+      <use href="#degree-ring" stroke="#F4F0E8"/>
+    </g>
+    <text fill="#F4F0E8" font-size="8.5" font-weight="700" letter-spacing="0.18em" text-anchor="middle" x="110" y="76" font-family="'Plus Jakarta Sans', sans-serif">HEARTH FIRED</text>
+    <text fill="#F4F0E8" font-size="11" font-weight="600" text-anchor="middle" x="110" y="148" class="sub-ar">طازة من النار</text>
+  </g>
+
+  <!-- TILE D: Compact App Icon & Optical Favicons (64 / 32 / 16) -->
+  <rect x="360" y="352" width="320" height="172" rx="24" fill="#FFFFFF"/>
+  <text x="384" y="380" class="label">TIER B · APP TILE &amp; OPTICAL FAVICONS</text>
+
+  <!-- 64x64 App Tile -->
+  <g id="app-icon-64" transform="translate(390, 408)">
+    <rect width="72" height="72" rx="18" fill="#1D1916"/>
+    <g transform="translate(9, 24) scale(0.245)">
+      <use href="#numerals-250" stroke="#F4F0E8"/>
+      <use href="#degree-ring" stroke="#EB4A1E"/>
+    </g>
+    <text x="36" y="92" text-anchor="middle" class="label">64PX</text>
+  </g>
+
+  <!-- 32x32 Optical Favicon -->
+  <g id="favicon-32" transform="translate(496, 428)">
+    <rect width="36" height="36" rx="9" fill="#1D1916"/>
+    <g transform="translate(4, 12) scale(0.125)">
+      <use href="#numerals-250" stroke="#F4F0E8"/>
+      <circle cx="204" cy="18" r="14" fill="#EB4A1E"/>
+    </g>
+    <text x="18" y="72" text-anchor="middle" class="label">32PX</text>
+  </g>
+
+  <!-- 16x16 Optical Micro-Favicon (Simplified 0 + Ember Degree Dot — Zero Blur!) -->
+  <g id="favicon-16" transform="translate(572, 436)">
+    <rect width="20" height="20" rx="5" fill="#1D1916"/>
+    <rect x="4" y="5" width="7" height="10" rx="3" fill="none" stroke="#F4F0E8" stroke-width="2.2"/>
+    <circle cx="15" cy="6.5" r="2.4" fill="#EB4A1E"/>
+    <text x="10" y="64" text-anchor="middle" class="label">16PX</text>
+  </g>
+
+  <!-- Color Swatch Reference Strip -->
+  <rect x="700" y="352" width="220" height="172" rx="24" fill="#FFFFFF"/>
+  <text x="722" y="380" class="label">60 · 30 · 10 PALETTE</text>
+  <rect x="722" y="398" width="176" height="24" rx="8" fill="#F4F0E8" stroke="#E4DDD2"/>
+  <text x="732" y="414" class="label">60% LINEN #F4F0E8</text>
+  <rect x="722" y="430" width="176" height="24" rx="8" fill="#1D1916"/>
+  <text x="732" y="446" class="label" fill="#F4F0E8">30% ESPRESSO #1D1916</text>
+  <rect x="722" y="462" width="176" height="24" rx="8" fill="#CC4524"/>
+  <text x="732" y="478" class="label" fill="#FFFFFF">10% KILN #CC4524 (H36)</text>
+  <rect x="722" y="494" width="176" height="18" rx="6" fill="#B91C3C"/>
+  <text x="732" y="507" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" letter-spacing="0.06em" fill="#FFFFFF">ERROR ROSE #B91C3C (H15 · ≥20° GAP)</text>
+</svg>

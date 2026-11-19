@@ -1,0 +1,34 @@
+# Website Vision & Logo Exploration — Ready Image-Generation Prompts
+
+> **Why These Prompts Live Here:** Our built-in `gemini-3.1-flash-image` hit its temporary capacity limit earlier (resets at **18:30 Cairo time** on Nov 19, 2026). Paste any of these straight into **Gemini AI Pro** right now — OR ask our fresh Antigravity chat after `18:30` to generate all 6 Website Vision boards + 4 Logo boards in parallel!
+
+---
+
+## Part A — 6 Distinct Full-Website Visual Directions (Imagine Before Designing!)
+
+### Vision 1 — **Sunlit Warm-Linen Editorial (`CoolDock × Google Labs Dreambeans`)** *(Recommended Baseline)*
+> `UI/UX desktop website design concept (1440px wide, full-page storytelling landing page) for a modern Cairo open-fire restaurant named "KRAVE" (serving smash burgers, stone-deck pizza, and charcoal grill). Sunlit warm-linen stone background (#F4F0E8), espresso charcoal ink (#1D1916), vibrant warm terracotta-orange accents (#CC4524). Centered frosted-glass floating pill navbar, bold 2-line architectural headline, wide rounded 36px sunlit travertine food photography centerpiece (no menu grid on homepage!), 3-station open-fire craft story with a small live Cairo local-time sun clock badge, a sleek full-height realistic iPhone 16 Pro mockup showing live shared table ordering & split-bill screen, one deep charcoal dark Kitchen Pass showcase band, and a tall breathable warm-linen editorial footer with an oversized subtle halftone wordmark. Ultra-clean modern hospitality design, Awwwards Site of the Day polish, zero AI-slop clutter, zero neon.`
+
+### Vision 2 — **Crisp Studio Stone & Bright Coral-Orange (`CoolDock × Firecrawl Energy, Larger Typography`)**
+> `UI/UX desktop website design showcase (1440px wide) for an open-fire smash burger, pizza, and grill restaurant. Crisp sunlit studio warm-stone background (#F2F0EC), pure white rounded 28px elevation tiles, deep carbon text (#1B1A19), punchy light coral-vermilion orange accent (#E85026). Architectural vertical framing with generous breathing room, dynamic scroll-compacted top nav pill, full-bleed rounded sunlit dining photography hero, asymmetric editorial "How Shared Table Ordering Works" split featuring a realistic floating iPhone Pro interactive mockup, a bold coral-orange contrast story band, and a monumental full-viewport footer. Crisp modern typography, zero tiny text, zero cramped boxes.`
+
+### Vision 3 — **Bespoke Riyadh / Dubai Modern Fast-Casual Brand Flagship (`Half Million × SALT × Section-B`)**
+> `UI/UX desktop homepage design (1440px wide) for a cutting-edge MENA modern open-fire restaurant flagship. High-craft warm cream & matte kraft editorial surfaces paired with sharp deep espresso typography and bold terracotta-orange graphic bands. Features an unmistakable custom geometric flame-mascot emblem in the nav, bold large-scale editorial food & branded kraft packaging photography (burger box with terracotta belly band, stamped matte cold cup), an interactive QR table-split phone showcase, and a bold modular architectural footer. Feels like a real physical Cairo/Riyadh/Dubai restaurant brand website, not a generic SaaS template.`
+
+### Vision 4 — **Tactile Apple-Sheet Interactive Ordering App (`/menu` + Bottom Sheet + Side Cart View)**
+> `UI/UX desktop web application screen design (1440px × 900px) for the interactive "/menu" page of a modern sunlit open-fire restaurant built in shadcn base-luma / Apple Design System style. Warm linen canvas (#F4F0E8), spacious 3-column grid of crisp shadowless white 24px cards with 4:3 sunlit studio food photos (smash burger, stone-deck pizza, charcoal kofta), soft pill category filters, and an Apple-style translucent rounded Bottom Sheet rising smoothly from the bottom showing dish customization (Radio options, extras, "- 2 +" quantity stepper, live rolling EGP total) alongside a sleek dark charcoal Floating Cart Dock pill. Studio-grade modern product UI, clean hierarchy, zero visual clutter.`
+
+### Vision 5 — **Playful Architectural Storytelling (`Google Labs Playground × Notion Restraint`)**
+> `UI/UX desktop storytelling homepage (1440px wide) for a sunlit modern open-fire restaurant with warm personality. Airy pale travertine canvas, bold rounded neo-grotesque typography, full-viewport framed culinary photography, a subtle sleek 2-color ember flame mascot character peeking cleanly beside empty-state / interactive callouts, a realistic full-proportion iPhone mockup showing live friend tags adding dishes to a shared table, a sunlit Cairo live clock badge, and a tall minimal footer with a playful "Try Dark Mode" toggle popover. Warm, memorable, effortless, zero cartoon overload.`
+
+### Vision 6 — **Dark Charcoal Kitchen Pass (`/kds`) + Bilingual Arabic RTL Split Showcase**
+> `UI/UX dual-screen showcase (16:9 presentation) showing side-by-side: (Left) Sunlit warm-linen Arabic RTL mobile restaurant ordering screen on a realistic iPhone 16 Pro with crisp modern Arabic typography (Alexandria / IBM Plex Sans Arabic), bottom-sheet burger customizer with quantity stepper; (Right) Glare-free Deep Charcoal (#171412) desktop Kitchen Display System ("FireLink / 360 Link KDS") showing crisp high-contrast order tickets (#104 Table 5, #105 Table 2), elapsed timers, warm amber/green status indicators, large touch-friendly "Start Cooking / Ready" buttons, and an "86 Sold Out" live sync switch. Ultra-clean hospitality software design.`
+
+---
+
+## Part B — 4 Refined Brand Logo & Mascot Exploration Prompts (After 18:30!)
+
+1. **Direction 1 — `KRAVE` (`كريف`) + Sleek Cool Ember Mascot (`flame.` × `Khan Eats` 4-Tier Breakdown):** Flat terracotta `#CC4524` + espresso `#1D1916` sleek confident flame character with sharp tilted eyes beside bold modern `KRAVE` wordmark, breaking down cleanly into 4 tiers (Full Lockup → Wordmark + Mascot → Monogram → Pure Flame Icon) + branded kraft box & cup.
+2. **Direction 2 — `KAIRO` (`كايرو`) + Clever Negative-Space Oven/Flame Mark (`323` × `VOLTRA`):** Simplified monolithic stone-oven arch (zero tiny brick cracks!) + 3 bold horizontal grill bars + crisp negative-space flame carved cleanly inside, paired with bold `KAIRO` lettering + branded kraft packaging.
+3. **Direction 3 — `360°` Open-Fire Kitchen (`360°` Full-Circle Fire & Table Identity):** Inspired by `323`'s clever symmetrical modular numerals — bold custom `360°` inside a punchy warm-terracotta/charcoal color block where the `0` or `°` integrates a clean geometric flame/hearth silhouette, showing 4-tier breakdown + packaging.
+4. **Direction 4 — `Khan Eats`-Style Integrated Sizzling Skillet/Flame Hook:** Bold chunky wordmark (`KRAVE` or `KAIRO`) with a sleek cast-iron sear/flame hook integrated cleanly into the top of a letter, demonstrating the exact 4-tier vertical deconstruction down to a standalone 16px favicon!

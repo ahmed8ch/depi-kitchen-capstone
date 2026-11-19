@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560" role="img" aria-labelledby="title-c3 desc-c3">
+  <title id="title-c3">250° Kitchen — Concept 3: The Stencil Sear Brand Specimen</title>
+  <desc id="desc-c3">Condensed grill-grate stencil 250 numerals with razor sear cuts, notched solid ember thermal disc, Section-B inspired modular menu codes, dark contrast variant, and optical favicons.</desc>
+  <defs>
+    <style>
+      .label { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; fill: #635E58; }
+      .code-en { font-family: 'Space Grotesk', 'Plus Jakarta Sans', -apple-system, sans-serif; font-weight: 700; letter-spacing: 0.06em; }
+      .code-ar { font-family: 'IBM Plex Sans Arabic', 'Alexandria', 'Tahoma', sans-serif; font-weight: 700; letter-spacing: 0; }
+    </style>
+
+    <!-- Mask for Razor Grill-Sear Stencil Cuts across 2-5-0 (on 216x88 space) -->
+    <mask id="sear-cuts">
+      <rect width="260" height="100" fill="#FFFFFF"/>
+      <!-- Clean horizontal sear bridge on 2 spine, 5 belly, and 0 vertical sides -->
+      <rect x="6" y="40" width="58" height="4.5" fill="#000000"/>
+      <rect x="66" y="40" width="58" height="4.5" fill="#000000"/>
+      <rect x="130" y="40" width="60" height="4.5" fill="#000000"/>
+    </mask>
+
+    <!-- Condensed Heavy Architectural 250 Geometry -->
+    <g id="stencil-250" mask="url(#sear-cuts)">
+      <!-- 2 -->
+      <path d="M 12 24 V 16 A 8 8 0 0 1 20 8 H 44 A 8 8 0 0 1 52 16 V 33 A 8 8 0 0 1 44 41 H 20 A 8 8 0 0 0 12 49 V 76 H 58"
+            fill="none" stroke-width="16" stroke-linecap="butt" stroke-linejoin="miter"/>
+      <!-- 5 -->
+      <path d="M 118 8 H 74 V 35 A 6 6 0 0 0 80 41 H 106 A 8 8 0 0 1 114 49 V 68 A 8 8 0 0 1 106 76 H 80 A 8 8 0 0 1 74 68 V 59"
+            fill="none" stroke-width="16" stroke-linecap="butt" stroke-linejoin="miter"/>
+      <!-- 0 -->
+      <rect x="138" y="8" width="44" height="68" rx="14" ry="14"
+            fill="none" stroke-width="16"/>
+    </g>
+
+    <!-- Solid Ember Thermal Disc with 45-deg Heat Notch -->
+    <g id="notched-degree">
+      <circle cx="206" cy="20" r="14.5"/>
+      <!-- Tiny optical center punch + sear slit -->
+      <circle cx="206" cy="20" r="4.5" fill="#F2F0EC"/>
+    </g>
+    <g id="notched-degree-dark">
+      <circle cx="206" cy="20" r="14.5"/>
+      <circle cx="206" cy="20" r="4.5" fill="#141312"/>
+    </g>
+  </defs>
+
+  <!-- Canvas Background (Studio Warm Stone) -->
+  <rect width="960" height="560" rx="28" fill="#F2F0EC"/>
+
+  <!-- Header Strip -->
+  <text x="40" y="42" class="label">CONCEPT 03 · THE STENCIL SEAR · GRILL-GRATE CUT NUMERALS + MODULAR CODING (BRGR × SECTION-B)</text>
+  <line x1="40" y1="56" x2="920" y2="56" stroke="#DFDCD6" stroke-width="1"/>
+
+  <!-- TILE A: Primary Light Wordmark -->
+  <rect x="40" y="76" width="560" height="256" rx="24" fill="#FFFFFF"/>
+  <text x="64" y="106" class="label">TIER A · CONDENSED STENCIL LOCKUP (URBAN FAST-CASUAL ENERGY)</text>
+  <g id="primary-lockup" transform="translate(152, 138) scale(1.18)">
+    <use href="#stencil-250" stroke="#1B1A19"/>
+    <use href="#notched-degree" fill="#EB4A1E"/>
+  </g>
+  <!-- Crisp Dual-Rule Architectural Sub-Band -->
+  <rect x="160" y="256" width="296" height="32" rx="16" fill="#F2F0EC"/>
+  <text x="278" y="277" text-anchor="end" fill="#1B1A19" font-size="13" class="code-en">250° KITCHEN</text>
+  <text x="296" y="276" text-anchor="middle" fill="#EB4A1E" font-size="13" font-weight="700">/</text>
+  <text x="314" y="277" text-anchor="start" fill="#1B1A19" font-size="14" class="code-ar">مطبخ 250°</text>
+
+  <!-- TILE B: Dark Cast-Iron Variant -->
+  <rect x="620" y="76" width="300" height="256" rx="24" fill="#141312"/>
+  <text x="644" y="106" class="label" fill="#9A9691">CAST-IRON DARK · /KDS &amp; CART</text>
+  <g id="dark-lockup" transform="translate(664, 158) scale(0.94)">
+    <use href="#stencil-250" stroke="#F2F0EC"/>
+    <use href="#notched-degree-dark" fill="#EB4A1E"/>
+  </g>
+  <!-- Ember Double Racing Stripe (Packaging Signature) -->
+  <rect x="644" y="268" width="252" height="5" rx="2.5" fill="#EB4A1E"/>
+  <rect x="644" y="278" width="252" height="1.5" fill="#F2F0EC" opacity="0.35"/>
+  <text x="644" y="302" fill="#F2F0EC" font-size="11" class="code-en">250-PASS · OPEN HEARTH</text>
+
+  <!-- TILE C: Section-B Inspired Modular Product Coding System -->
+  <rect x="40" y="352" width="520" height="172" rx="24" fill="#FFFFFF"/>
+  <text x="64" y="380" class="label">TIER C · MODULAR PACKAGING &amp; MENU CODES (SECTION-B SYSTEM)</text>
+
+  <!-- 3 Modular Category Badges -->
+  <g transform="translate(64, 404)">
+    <rect width="146" height="92" rx="16" fill="#F2F0EC"/>
+    <rect x="14" y="14" width="28" height="4" rx="2" fill="#EB4A1E"/>
+    <text x="14" y="48" fill="#1B1A19" font-size="22" class="code-en">250-B</text>
+    <text x="14" y="72" fill="#635E58" font-size="11" class="code-en">SMASH</text>
+    <text x="132" y="72" text-anchor="end" fill="#1B1A19" font-size="12" class="code-ar">سماش</text>
+  </g>
+  <g transform="translate(226, 404)">
+    <rect width="146" height="92" rx="16" fill="#F2F0EC"/>
+    <rect x="14" y="14" width="28" height="4" rx="2" fill="#1B1A19"/>
+    <text x="14" y="48" fill="#1B1A19" font-size="22" class="code-en">250-P</text>
+    <text x="14" y="72" fill="#635E58" font-size="11" class="code-en">PIZZA</text>
+    <text x="132" y="72" text-anchor="end" fill="#1B1A19" font-size="12" class="code-ar">بيتزا</text>
+  </g>
+  <g transform="translate(388, 404)">
+    <rect width="146" height="92" rx="16" fill="#1B1A19"/>
+    <rect x="14" y="14" width="28" height="4" rx="2" fill="#EB4A1E"/>
+    <text x="14" y="48" fill="#F2F0EC" font-size="22" class="code-en">250-G</text>
+    <text x="14" y="72" fill="#9A9691" font-size="11" class="code-en">GRILL</text>
+    <text x="132" y="72" text-anchor="end" fill="#F2F0EC" font-size="12" class="code-ar">جريل</text>
+  </g>
+
+  <!-- TILE D: Compact Favicons & Optical Reduction -->
+  <rect x="580" y="352" width="340" height="172" rx="24" fill="#FFFFFF"/>
+  <text x="604" y="380" class="label">TIER B · STENCIL MONOGRAM &amp; FAVICONS</text>
+
+  <!-- 64px Square Stamp -->
+  <g transform="translate(612, 408)">
+    <rect width="72" height="72" rx="14" fill="#1B1A19"/>
+    <g transform="translate(8, 22) scale(0.245)">
+      <use href="#stencil-250" stroke="#F2F0EC"/>
+      <circle cx="206" cy="20" r="16" fill="#EB4A1E"/>
+    </g>
+    <text x="36" y="92" text-anchor="middle" class="label">64PX</text>
+  </g>
+
+  <!-- 32px Optical Favicon -->
+  <g transform="translate(722, 426)">
+    <rect width="36" height="36" rx="8" fill="#1B1A19"/>
+    <rect x="6" y="8" width="13" height="20" rx="5" fill="none" stroke="#F2F0EC" stroke-width="4"/>
+    <rect x="4" y="16.5" width="17" height="3" fill="#1B1A19"/>
+    <circle cx="26.5" cy="12" r="4.5" fill="#EB4A1E"/>
+    <text x="18" y="74" text-anchor="middle" class="label">32PX</text>
+  </g>
+
+  <!-- 16px Optical Favicon (Stencil 0 + Ember Disc) -->
+  <g transform="translate(806, 434)">
+    <rect width="20" height="20" rx="4" fill="#1B1A19"/>
+    <rect x="3.5" y="4.5" width="7" height="11" rx="2.5" fill="none" stroke="#F2F0EC" stroke-width="2.2"/>
+    <rect x="2" y="9.2" width="10" height="1.6" fill="#1B1A19"/>
+    <circle cx="15" cy="6.5" r="2.6" fill="#EB4A1E"/>
+    <text x="10" y="66" text-anchor="middle" class="label">16PX</text>
+  </g>
+</svg>
