@@ -10,15 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as KdsRouteImport } from './routes/kds'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as TableIndexRouteImport } from './routes/table.index'
 import { Route as TableTableNumberRouteImport } from './routes/table.$tableNumber'
+import { Route as TrackIndexRouteImport } from './routes/track.index'
 import { Route as TrackOrderIdRouteImport } from './routes/track.$orderId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KdsRoute = KdsRouteImport.update({
@@ -41,6 +54,11 @@ const TableTableNumberRoute = TableTableNumberRouteImport.update({
   path: '/table/$tableNumber',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrackIndexRoute = TrackIndexRouteImport.update({
+  id: '/track/',
+  path: '/track/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TrackOrderIdRoute = TrackOrderIdRouteImport.update({
   id: '/track/$orderId',
   path: '/track/$orderId',
@@ -49,63 +67,84 @@ const TrackOrderIdRoute = TrackOrderIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
   '/kds': typeof KdsRoute
   '/menu': typeof MenuRoute
   '/table/$tableNumber': typeof TableTableNumberRoute
   '/track/$orderId': typeof TrackOrderIdRoute
   '/table/': typeof TableIndexRoute
+  '/track/': typeof TrackIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
   '/kds': typeof KdsRoute
   '/menu': typeof MenuRoute
   '/table/$tableNumber': typeof TableTableNumberRoute
   '/track/$orderId': typeof TrackOrderIdRoute
   '/table': typeof TableIndexRoute
+  '/track': typeof TrackIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
   '/kds': typeof KdsRoute
   '/menu': typeof MenuRoute
   '/table/$tableNumber': typeof TableTableNumberRoute
   '/track/$orderId': typeof TrackOrderIdRoute
   '/table/': typeof TableIndexRoute
+  '/track/': typeof TrackIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/account'
     | '/kds'
     | '/menu'
     | '/table/$tableNumber'
     | '/track/$orderId'
     | '/table/'
+    | '/track/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/account'
     | '/kds'
     | '/menu'
     | '/table/$tableNumber'
     | '/track/$orderId'
     | '/table'
+    | '/track'
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/account'
     | '/kds'
     | '/menu'
     | '/table/$tableNumber'
     | '/track/$orderId'
     | '/table/'
+    | '/track/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AccountRoute: typeof AccountRoute
   KdsRoute: typeof KdsRoute
   MenuRoute: typeof MenuRoute
   TableTableNumberRoute: typeof TableTableNumberRoute
   TrackOrderIdRoute: typeof TrackOrderIdRoute
   TableIndexRoute: typeof TableIndexRoute
+  TrackIndexRoute: typeof TrackIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -115,6 +154,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kds': {
@@ -145,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TableTableNumberRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/track/': {
+      id: '/track/'
+      path: '/track'
+      fullPath: '/track/'
+      preLoaderRoute: typeof TrackIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/track/$orderId': {
       id: '/track/$orderId'
       path: '/track/$orderId'
@@ -157,11 +217,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AccountRoute: AccountRoute,
   KdsRoute: KdsRoute,
   MenuRoute: MenuRoute,
   TableTableNumberRoute: TableTableNumberRoute,
   TrackOrderIdRoute: TrackOrderIdRoute,
   TableIndexRoute: TableIndexRoute,
+  TrackIndexRoute: TrackIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -10,7 +10,7 @@
 1. Read `STATUS.md` (live handoff state & exact next step).
 2. Read `02-design-vision/LIVE-SITE-CRITIQUE-AND-FIX-SPEC.md` while executing active UI overhaul/fix sprints.
 3. Read `PARTNER-PROFILE.md` (human partner tastes, pure-white `base-luma` vision, easter eggs, vetoes, Opus credit rules).
-4. Read `DECISIONS.md` (hard constraints `C-01`–`C-08` & locked decisions `L-01`–`L-07`).
+4. Read `DECISIONS.md` (hard constraints `C-01`–`C-08` & locked decisions `L-01`–`L-08`, including locked brand **`Krave` / `كريف`**).
 5. Read `02-design-vision/UX-FEEDBACK-AND-DESIGN-BRIEF.md` & `02-design-vision/references/SYNTHESIS.md` before building ANY UI screen.
 6. Check `WORKSPACE-MAP.md` and load `04-prep-packs/` specs **strictly on demand**.
 
@@ -30,7 +30,7 @@
 - **Design-as-Code & Section-by-Section Craft (Kamran Ahmed Method):** Build directly in real Vite + React + **`shadcn/ui` (`base-luma` on `@base-ui/react`)** using the official **`shadcn` MCP** and `.agents/skills/shadcn/SKILL.md`. **Build and visually verify ONE section at a time** — NEVER dump an entire unreviewed multi-section page in a single blind shot! Never hand-roll divs where real `shadcn` components exist (`Drawer`, `Sheet`, `Popover`, `Empty`, `Item`, `Field`, `InputGroup`, `ButtonGroup`, `ToggleGroup`, `InputOTP`, `Switch`, `Tabs`, `Card`, `Badge`, `Separator`, `Skeleton`, `Spinner`, `Direction`, Base UI `toast`). Use Base UI `render` (never Radix `asChild`).
 - **Strict Brand Separation & Pure Crisp White Surface (`C-05`, `C-06`, `L-07`):**
   - Default canvas is **pure crisp white `#FFFFFF`** (`oklch(1 0 0)`) with clean neutral `base-luma` surfaces (`#FAFAFA` / `#F5F5F5`, hairline neutral borders, `#09090B` ink). **Muddy beige (`#F4F0E8`) and heavy dark burgundy (`Palette C`) are REJECTED.**
-  - **`FlameLink` (`assets/logos/flamefire finale v1.svg` / padded square `flamelink-badge.svg`) is STRICTLY the tech platform** (`"Powered by FlameLink"` in footer + `/kds` Kitchen Pass + dark KDS showcase band) — **NEVER the main restaurant logo in the top-left storefront navbar!**
+  - **`Krave` (`كريف`)** is the locked restaurant storefront brand (`src/config/brand.ts`); **`FlameLink` (`assets/logos/flamefire finale v1.svg` / padded square `flamelink-badge.svg`) is STRICTLY the tech platform** (`"Powered by FlameLink"` in footer + `/kds` Kitchen Pass + dark KDS showcase band) — **NEVER the main restaurant logo in the top-left storefront navbar!**
   - Default storefront `--primary` is **warm appetizing Coral-Orange (`oklch(0.575 0.195 35)`)** with `#FFFFFF` white button text (including inside `[data-surface="dark-pass"]`!). NEVER expose dev accent switchers (`Rose | Coral`) in guest navigation chrome.
 - **Spatial & Drawer Geometry Rules:**
   - **Floating Phone-Width Bottom Sheets:** Desktop vertical `Drawer` sheets MUST be compact, centered, and floating (**`max-w-[400px]–[420px] rounded-[32px] bottom-4 mx-auto`**) with `motion/react` + `ResizeObserver` height morphing — **NEVER full 1440px viewport width!**

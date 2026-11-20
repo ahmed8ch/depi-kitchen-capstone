@@ -34,7 +34,7 @@ export function formatEgp(
   }
 
   const egp = piasters / 100;
-  const formatted = new Intl.NumberFormat(locale === "ar" ? "ar-EG" : "en-EG", {
+  const formatted = new Intl.NumberFormat("en-EG", {
     minimumFractionDigits: piasters % 100 === 0 ? 0 : 2,
     maximumFractionDigits: 2,
   }).format(egp);

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <g transform="rotate(-38 16 16)">
+    <!-- Crisp outer white halo for contrast on dark & light food photos -->
+    <path d="M12.5 5.5V12.5C12.5 14.3 14.1 15.6 16 15.6C17.9 15.6 19.5 14.3 19.5 12.5V5.5M16 5.5V15.6M16 15.6V26.5" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Clean thin dark charcoal fork with clear spaced tines -->
+    <path d="M12.5 5.5V12.5C12.5 14.3 14.1 15.6 16 15.6C17.9 15.6 19.5 14.3 19.5 12.5V5.5M16 5.5V15.6M16 15.6V26.5" stroke="#18181B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="16" cy="26.5" r="1.1" fill="#EB4A1E"/>
+  </g>
+</svg>

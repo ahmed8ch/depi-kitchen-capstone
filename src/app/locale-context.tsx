@@ -10,14 +10,36 @@ import {
 import { DirectionProvider } from "@/components/ui/direction";
 
 export type AppLocale = "en" | "ar";
-export type AppAccent = "crimson" | "coral";
+export type AppTheme = "light" | "dark";
+
+const LOCALE_STORAGE_KEY = "krave-locale";
+const THEME_STORAGE_KEY = "krave-theme";
+
+function readStoredLocale(): AppLocale {
+  try {
+    const stored = window.localStorage.getItem(LOCALE_STORAGE_KEY);
+    return stored === "ar" ? "ar" : "en";
+  } catch {
+    return "en";
+  }
+}
+
+function readStoredTheme(): AppTheme {
+  try {
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+    return stored === "dark" ? "dark" : "light";
+  } catch {
+    return "light";
+  }
+}
 
 interface AppAppearanceContextValue {
-  locale: AppLocale;
-  setLocale: (next: AppLocale) => void;
-  dir: "ltr" | "rtl";
-  accent: AppAccent;
-  setAccent: (next: AppAccent) => void;
+  readonly locale: AppLocale;
+  readonly setLocale: (next: AppLocale) => void;
+  readonly dir: "ltr" | "rtl";
+  readonly theme: AppTheme;
+  readonly setTheme: (next: AppTheme) => void;
+  readonly toggleTheme: () => void;
 }
 
 const AppAppearanceContext = createContext<AppAppearanceContextValue | null>(
@@ -27,42 +49,53 @@ const AppAppearanceContext = createContext<AppAppearanceContextValue | null>(
 export function LocaleDirectionProvider({
   children,
 }: {
-  children: ReactNode;
+  readonly children: ReactNode;
 }) {
-  const [locale, setLocaleState] = useState<AppLocale>("en");
-  const [accent, setAccentState] = useState<AppAccent>("crimson");
+  const [locale, setLocaleState] = useState<AppLocale>(readStoredLocale);
+  const [theme, setThemeState] = useState<AppTheme>(readStoredTheme);
   const dir: "ltr" | "rtl" = locale === "ar" ? "rtl" : "ltr";
 
   useEffect(() => {
     document.documentElement.dir = dir;
     document.documentElement.lang = locale === "ar" ? "ar-EG" : "en";
+    try {
+      window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+    } catch {
+      // Ignore restricted storage errors.
+    }
   }, [dir, locale]);
 
   useEffect(() => {
-    if (accent === "coral") {
-      document.documentElement.dataset.accent = "coral";
-    } else {
-      delete document.documentElement.dataset.accent;
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch {
+      // Ignore restricted storage errors.
     }
-  }, [accent]);
+  }, [theme]);
 
   const setLocale = useCallback((next: AppLocale) => {
     setLocaleState(next);
   }, []);
 
-  const setAccent = useCallback((next: AppAccent) => {
-    setAccentState(next);
+  const setTheme = useCallback((next: AppTheme) => {
+    setThemeState(next);
   }, []);
 
-  const value = useMemo(
+  const toggleTheme = useCallback(() => {
+    setThemeState((prev) => (prev === "dark" ? "light" : "dark"));
+  }, []);
+
+  const value = useMemo<AppAppearanceContextValue>(
     () => ({
       locale,
       setLocale,
       dir,
-      accent,
-      setAccent,
+      theme,
+      setTheme,
+      toggleTheme,
     }),
-    [locale, setLocale, dir, accent, setAccent],
+    [locale, setLocale, dir, theme, setTheme, toggleTheme],
   );
 
   return (

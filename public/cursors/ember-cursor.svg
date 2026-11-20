@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <!-- Crisp white contrast halo -->
+  <path d="M16.5 4.8C18.2 8.8 23.2 11.5 23.2 17.6C23.2 22.3 19.8 26.2 15.6 26.2C11.4 26.2 8.2 22.5 8.2 18C8.2 14.6 10 12.2 11.5 10.5C11.3 13 12.4 14.3 13.6 14.8C13.1 11.2 14.4 7.7 16.5 4.8Z" fill="#EB4A1E" stroke="#FFFFFF" stroke-width="3.6" stroke-linejoin="round"/>
+  <!-- Outer amber-vermilion flame -->
+  <path d="M16.5 4.8C18.2 8.8 23.2 11.5 23.2 17.6C23.2 22.3 19.8 26.2 15.6 26.2C11.4 26.2 8.2 22.5 8.2 18C8.2 14.6 10 12.2 11.5 10.5C11.3 13 12.4 14.3 13.6 14.8C13.1 11.2 14.4 7.7 16.5 4.8Z" fill="#EB4A1E" stroke="#18181B" stroke-width="1.4" stroke-linejoin="round"/>
+  <!-- Bright golden inner ember -->
+  <path d="M16 15.6C17.4 17.6 18.4 19.2 18.4 21.2C18.4 22.8 17.2 24 15.7 24C14.2 24 13 22.8 13 21.2C13 19.5 14.4 17.8 16 15.6Z" fill="#FDE047"/>
+</svg>

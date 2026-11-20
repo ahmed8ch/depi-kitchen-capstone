@@ -8,13 +8,14 @@ import { AppShell } from "@/app/AppShell";
 import { RouteErrorFallback } from "@/components/feedback/RouteErrorFallback";
 import { RouteNotFound } from "@/components/feedback/RouteNotFound";
 
-const TanStackRouterDevtools = import.meta.env.DEV
-  ? lazy(() =>
-      import("@tanstack/react-router-devtools").then((module) => ({
-        default: module.TanStackRouterDevtools,
-      })),
-    )
-  : () => null;
+const TanStackRouterDevtools =
+  import.meta.env.DEV && import.meta.env.VITE_SHOW_ROUTER_DEVTOOLS === "true"
+    ? lazy(() =>
+        import("@tanstack/react-router-devtools").then((module) => ({
+          default: module.TanStackRouterDevtools,
+        })),
+      )
+    : () => null;
 
 function RootLayout() {
   const pathname = useRouterState({

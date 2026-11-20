@@ -10,6 +10,7 @@
     "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
+    "lint:ui": "lintapple http://localhost:5173",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -47,6 +48,7 @@
     "@vitejs/plugin-react": "^6.3.0",
     "fast-check": "^4.10.3",
     "jsdom": "^31.0.1",
+    "lintapple": "^0.1.24",
     "oxlint": "^1.94.0",
     "tsrs": "^0.25.0-ts7.1.0-beta",
     "typescript": "^7.0.2",

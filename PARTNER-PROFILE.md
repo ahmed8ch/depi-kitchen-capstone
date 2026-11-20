@@ -35,9 +35,9 @@
 - **Preferred Building Discipline:** **Kamran Ahmed Section-by-Section iteration** (build & inspect 1 section at a time in `Neon High` — never let `Orchestrator Neon` dump an entire sloppy page in 1 pass!), search web/GitHub first, and **zero tautological labels/tests/components**.
 
 ## 4. Cultural, Naming, Arabic & Hard Red Lines
-- **Naming Status:**
-  - **Platform (`Powered by ...`):** **`FlameLink`** (user ALREADY designed the logo in `assets/logos/`!) — alternates `FireLink`, `360 Link`.
-  - **Restaurant Name (Still Open):** Active picks **`KRAVE`**, **`KAIRO`**, **`BRIK`**, **`360°`** (or fresh brainstorm).
+- **Naming Status (LOCKED):**
+  - **Restaurant Brand:** **`Krave`** (`كريف` in Arabic, `KRAVE` wordmark — single source of truth in `src/config/brand.ts`).
+  - **Platform (`Powered by ...`):** **`FlameLink`** (user's bespoke SVG in `assets/logos/` — strictly footer + `/kds` + dark KDS band!).
   - **PERMANENTLY VETOED:** `Jamr` (evokes Hajj *Ramy al-Jamarat*), `Dakka` (koshary/molokhia), `Char` (unfamiliar in Egypt), `Sear`, `Sizzle` (existing brand), `Area 20` (too corporate), standalone `250°` (feels cold/arbitrary), `Firepass`.
 - **Natural Cairo Arabic (`ar-EG`):** **NEVER write `"ع"` shorthand** (always full **`على`**), zero cringe literal translations (`"مقرمش ع النار"`), zero stiff MSA, optical font-size parity with English (`IBM Plex Sans Arabic` or `93%` scale on `Alexandria`), `[dir="rtl"] { letter-spacing: 0; }`.
 - **Zero Login / Zero Accounts (`C-08`):** Frictionless 4-digit Table PIN + first name ONLY. No auth/signup/passwords anywhere.

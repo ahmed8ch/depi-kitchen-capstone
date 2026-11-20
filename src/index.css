@@ -2,8 +2,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* Scoped dark contrast plane ONLY for Layer 4 (Floating Cart Dock, /kds, Dark Pass Showcase) */
-@custom-variant dark (&:is(.dark *, [data-surface="dark-pass"], [data-surface="dark-pass"] *));
+/* Dark variant applies to 3-click Soft-Charcoal Dark Mode (.dark) AND scoped dark planes */
+@custom-variant dark (&:is(.dark, .dark *, [data-surface="dark-pass"], [data-surface="dark-pass"] *));
 
 /* ============================================================================
    @theme inline - Stable Semantic Bridge
@@ -11,6 +11,7 @@
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: "Plus Jakarta Sans", "IBM Plex Sans Arabic", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Core shadcn/ui semantic colors */
   --color-background: var(--background);
@@ -46,7 +47,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Hospitality & 5-Layer Physical Plane Extensions */
+  /* Hospitality & Surface Extensions */
   --color-primary-hover: var(--primary-hover);
   --color-primary-ink: var(--primary-ink);
   --color-surface-tint: var(--surface-tint);
@@ -64,7 +65,7 @@
   --color-status-prep: var(--status-prep);
   --color-status-prep-bg: var(--status-prep-bg);
 
-  /* Concentric Soft Geometry (base-luma native scale) */
+  /* Concentric Soft Geometry */
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -73,94 +74,125 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Soft Ambient Elevation (Floating Layers ONLY) */
-  --shadow-glass: 0 8px 30px -10px oklch(0.22 0.015 55 / 12%), inset 0 1px 0 oklch(1 0 0 / 85%);
-  --shadow-dock: 0 20px 44px -14px oklch(0.16 0.01 45 / 42%), inset 0 1px 0 oklch(1 0 0 / 12%);
-  --shadow-card-hover: 0 14px 32px -16px oklch(0.22 0.015 55 / 14%);
+  /* Soft Ambient Elevation */
+  --shadow-glass: 0 10px 34px -12px oklch(0.22 0.015 55 / 13%), inset 0 1px 0 oklch(1 0 0 / 85%);
+  --shadow-dock: 0 24px 48px -16px oklch(0.12 0.01 45 / 46%), inset 0 1px 0 oklch(1 0 0 / 12%);
+  --shadow-card-hover: 0 16px 36px -18px oklch(0.22 0.015 55 / 16%);
 }
 
 /* ============================================================================
-   DEFAULT THEME (C-05/C-06): Pure Crisp White shadcn base-luma
+   DEFAULT THEME: Soft Editorial Warm-White (#FAF9F6) + Palette B Amber Vermilion
    ============================================================================ */
 :root {
   color-scheme: light;
   --radius: 0.75rem;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
-  /* Layer 0 & 1: Pure Crisp White Canvas + Neutral Luma Surfaces */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Layer 0 & 1: Soft Natural Editorial Paper (#FAF9F6) + Crisp Lifted White Cards */
+  --background: oklch(0.985 0.004 85);
+  --foreground: oklch(0.175 0.005 60);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.175 0.005 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --surface-tint: oklch(0.985 0 0);
+  --popover-foreground: oklch(0.175 0.005 60);
+  --secondary: oklch(0.955 0.006 82);
+  --secondary-foreground: oklch(0.21 0.005 60);
+  --muted: oklch(0.955 0.006 82);
+  --muted-foreground: oklch(0.50 0.006 60);
+  --accent: oklch(0.955 0.008 78);
+  --accent-foreground: oklch(0.21 0.005 60);
+  --surface-tint: oklch(0.964 0.007 82);
 
-  /* Layer 2: Frosted Pure Daylight Glass */
-  --glass: oklch(1 0 0 / 82%);
+  /* Layer 2: Frosted Warm-Daylight Glass */
+  --glass: oklch(0.992 0.003 85 / 84%);
 
-  /* Layer 3: Brand Accent (Default: Crisp FlameLink Rose-Crimson) */
-  --primary: oklch(0.585 0.245 12);
+  /* Layer 3: Palette B — Amber Vermilion (#EB4A1E) */
+  --primary: oklch(0.605 0.21 35);
   --primary-foreground: oklch(1 0 0);
-  --primary-hover: oklch(0.525 0.235 12);
-  --primary-ink: oklch(0.525 0.235 12);
+  --primary-hover: oklch(0.535 0.20 34);
+  --primary-ink: oklch(0.495 0.185 34);
 
   /* Borders, Inputs & Focus Ring */
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.585 0.245 12);
+  --border: oklch(0.905 0.006 80);
+  --input: oklch(0.905 0.006 80);
+  --ring: oklch(0.605 0.21 35);
 
   /* Semantic Status */
-  --destructive: oklch(0.54 0.22 28);
+  --destructive: oklch(0.54 0.215 22);
   --destructive-foreground: oklch(1 0 0);
-  --status-ready: oklch(0.48 0.14 152);
-  --status-ready-bg: oklch(0.955 0.025 152);
-  --status-prep: oklch(0.52 0.14 68);
-  --status-prep-bg: oklch(0.96 0.032 80);
+  --status-ready: oklch(0.48 0.15 152);
+  --status-ready-bg: oklch(0.955 0.03 152);
+  --status-prep: oklch(0.54 0.155 68);
+  --status-prep-bg: oklch(0.958 0.038 80);
 
   /* Neutral chart & sidebar defaults */
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.585 0.245 12);
+  --chart-1: oklch(0.605 0.21 35);
+  --chart-2: oklch(0.58 0.15 152);
+  --chart-3: oklch(0.62 0.16 250);
+  --chart-4: oklch(0.72 0.15 75);
+  --chart-5: oklch(0.60 0.17 305);
+  --sidebar: oklch(0.978 0.004 85);
+  --sidebar-foreground: oklch(0.175 0.005 60);
+  --sidebar-primary: oklch(0.605 0.21 35);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.585 0.245 12);
+  --sidebar-accent: oklch(0.955 0.006 82);
+  --sidebar-accent-foreground: oklch(0.21 0.005 60);
+  --sidebar-border: oklch(0.905 0.006 80);
+  --sidebar-ring: oklch(0.605 0.21 35);
 
-  /* Layer 4: Neutral Obsidian Contrast Plane */
-  --pass: oklch(0.145 0 0);
-  --pass-surface: oklch(0.205 0 0);
-  --pass-foreground: oklch(0.985 0 0);
-  --pass-muted: oklch(0.708 0 0);
-  --pass-accent: oklch(0.66 0.24 12);
+  /* Layer 4: Eye-Friendly Warm Obsidian Rail (Harmonized FlameLink Ember-Vermilion) */
+  --pass: oklch(0.16 0.006 270);
+  --pass-surface: oklch(0.20 0.007 270);
+  --pass-foreground: oklch(0.94 0.005 85);
+  --pass-muted: oklch(0.70 0.007 270);
+  --pass-accent: oklch(0.60 0.215 28);
   --pass-border: oklch(1 0 0 / 10%);
 }
 
 /* ============================================================================
-   1-LINE SWAPPABLE ACCENT OPTION B: Crisp Coral-Orange on Pure White
+   3-CLICK EYE-FRIENDLY SOFT CHARCOAL DARK MODE (Zero #000000 AMOLED Halation)
    ============================================================================ */
-:root[data-accent="coral"] {
-  --primary: oklch(0.605 0.205 36);
-  --primary-hover: oklch(0.54 0.195 35);
-  --primary-ink: oklch(0.51 0.185 34);
-  --ring: oklch(0.605 0.205 36);
-  --destructive: oklch(0.53 0.21 15);
-  --pass-accent: oklch(0.695 0.205 36);
+:root.dark {
+  color-scheme: dark;
+  --background: oklch(0.158 0.006 270);
+  --foreground: oklch(0.935 0.005 85);
+  --card: oklch(0.198 0.007 270);
+  --card-foreground: oklch(0.935 0.005 85);
+  --popover: oklch(0.222 0.008 270);
+  --popover-foreground: oklch(0.935 0.005 85);
+  --secondary: oklch(0.245 0.007 270);
+  --secondary-foreground: oklch(0.935 0.005 85);
+  --muted: oklch(0.245 0.007 270);
+  --muted-foreground: oklch(0.71 0.008 270);
+  --accent: oklch(0.265 0.009 270);
+  --accent-foreground: oklch(0.95 0.005 85);
+  --surface-tint: oklch(0.185 0.006 270);
+  --glass: oklch(0.18 0.007 270 / 82%);
+
+  /* Brighter Amber Vermilion calibrated for dark charcoal */
+  --primary: oklch(0.655 0.20 35);
+  --primary-foreground: oklch(1 0 0);
+  --primary-hover: oklch(0.60 0.205 34);
+  --primary-ink: oklch(0.76 0.175 38);
+
+  --border: oklch(0.295 0.008 270);
+  --input: oklch(0.295 0.008 270);
+  --ring: oklch(0.655 0.20 35);
+
+  --destructive: oklch(0.64 0.21 22);
+  --destructive-foreground: oklch(1 0 0);
+  --status-ready: oklch(0.76 0.17 152);
+  --status-ready-bg: oklch(0.26 0.055 152 / 55%);
+  --status-prep: oklch(0.80 0.155 75);
+  --status-prep-bg: oklch(0.28 0.055 72 / 55%);
+
+  --shadow-glass: 0 10px 34px -12px oklch(0 0 0 / 55%), inset 0 1px 0 oklch(1 0 0 / 8%);
+  --shadow-card-hover: 0 18px 40px -18px oklch(0 0 0 / 55%);
 }
 
 /* ============================================================================
-   Layer 4 Scoped Dark Pass Surface (Dock, /kds, Dark Showcase Island ONLY)
+   Layer 4 Scoped Dark Pass Surface (Dock, /kds Rail, Dark Showcase Band)
    ============================================================================ */
 [data-surface="dark-pass"] {
   color-scheme: dark;
@@ -171,26 +203,26 @@
   --popover: var(--pass-surface);
   --popover-foreground: var(--pass-foreground);
   --primary: var(--pass-accent);
-  --primary-foreground: var(--pass);
-  --secondary: oklch(0.28 0.008 50);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.25 0.007 270);
   --secondary-foreground: var(--pass-foreground);
-  --muted: oklch(0.28 0.008 50);
+  --muted: oklch(0.25 0.007 270);
   --muted-foreground: var(--pass-muted);
-  --accent: oklch(0.30 0.010 50);
+  --accent: oklch(0.27 0.008 270);
   --accent-foreground: var(--pass-foreground);
   --border: var(--pass-border);
-  --input: oklch(1 0 0 / 18%);
+  --input: oklch(1 0 0 / 16%);
   --ring: var(--pass-accent);
-  --destructive: oklch(0.71 0.175 22);
-  --destructive-foreground: var(--pass);
-  --status-ready: oklch(0.80 0.175 152);
-  --status-ready-bg: oklch(0.26 0.055 152);
-  --status-prep: oklch(0.80 0.155 78);
-  --status-prep-bg: oklch(0.28 0.055 72);
+  --destructive: oklch(0.64 0.21 22);
+  --destructive-foreground: oklch(1 0 0);
+  --status-ready: oklch(0.78 0.175 152);
+  --status-ready-bg: oklch(0.26 0.055 152 / 55%);
+  --status-prep: oklch(0.82 0.155 78);
+  --status-prep-bg: oklch(0.28 0.055 72 / 55%);
 }
 
 /* ============================================================================
-   Base Layer + Base UI Mandatory Portal Stacking Context Isolation
+   Base Layer + Mobile-Native Craft + Base UI Isolation
    ============================================================================ */
 @layer base {
   * {
@@ -201,6 +233,8 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
   }
 
   [dir="rtl"] {
@@ -209,15 +243,106 @@
 
   body {
     @apply bg-background text-foreground;
+    overscroll-behavior: none;
+    transition: background-color 240ms var(--ease-out), color 240ms var(--ease-out);
+  }
+
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
   }
 
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  @media (pointer: coarse) {
+    input,
+    textarea,
+    select {
+      font-size: 16px;
+    }
   }
 
   #root {
     isolation: isolate;
+  }
+}
+
+/* Scoped 32x32 Culinary CSS SVG Cursors — Covers 100% of Dish Card (Photo + Text + Button) */
+@media (hover: hover) and (pointer: fine) {
+  .menu-card-cursor,
+  .menu-card-cursor * {
+    cursor: url("/cursors/fork-cursor.svg") 6 6, pointer !important;
+  }
+  .menu-card-cursor.cursor-spicy,
+  .menu-card-cursor.cursor-spicy * {
+    cursor: url("/cursors/chili-cursor.svg") 6 6, pointer !important;
+  }
+  .menu-card-cursor.cursor-charcoal,
+  .menu-card-cursor.cursor-charcoal * {
+    cursor: url("/cursors/ember-cursor.svg") 6 6, pointer !important;
+  }
+  .menu-card-cursor [data-native-cursor],
+  .menu-card-cursor [data-native-cursor] * {
+    cursor: pointer !important;
+  }
+}
+
+/* Spotlight surface driven by CSS vars --mx / --my updated via ref (zero React state) */
+.spotlight-surface {
+  position: relative;
+}
+@media (hover: hover) and (pointer: fine) {
+  .spotlight-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 220ms var(--ease-out);
+    background: radial-gradient(
+      340px circle at var(--mx, 50%) var(--my, 50%),
+      oklch(0.605 0.21 35 / 0.1),
+      transparent 70%
+    );
+  }
+  .spotlight-surface:hover::before {
+    opacity: 1;
+  }
+  [data-surface="dark-pass"] .spotlight-surface::before,
+  .spotlight-surface[data-surface="dark-pass"]::before,
+  .dark .spotlight-surface::before {
+    background: radial-gradient(
+      380px circle at var(--mx, 50%) var(--my, 50%),
+      oklch(0.655 0.20 35 / 0.12),
+      transparent 70%
+    );
+  }
+}
+
+/* Loading.dev-inspired reduced-motion loader animations */
+@keyframes krave-bar-pulse {
+  0%, 100% {
+    transform: scaleY(0.35);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .krave-loader-bar {
+    animation: none !important;
+    transform: scaleY(0.75);
+    opacity: 0.8;
   }
 }
 
